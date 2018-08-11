@@ -1,0 +1,249 @@
+﻿@model MNJvWeb.Models.Master.InputMasterItemTreatmentModel
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+
+
+
+<div class="page-title">
+    <h1>Input Item (Threatment & Product) Master</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card2">
+            <div class="bs-component">
+                <form id="frm1" class=" form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Item Group</label>
+                        <select class="form-control" id="selGroup" name="selGroup"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Item Code</label>
+                        <select class="form-control" id="selItem" name="selItem" required>
+                        </select>
+
+                        <label class="control-label " for="exampleInputEmail2">Type</label>
+                        <select class="form-control" id="" seltypename="selType" required>
+                            <option value="all">ALL</option>
+                            <option value="treatment">Treatment</option>
+                            <option value="product">Product</option>
+                        </select>
+
+                        <label for="exampleInputEmail2">Customer</label>
+                        <select class="form-control" id="selCustomer" name="selCustomer" required></select>
+
+                        <label class="control-label" for="exampleInputEmail2">Action</label>
+
+                        <select class="form-control" id="selÀction" name="selÀction" required>
+                            <option value="PREVIEW">Preview</option>
+                            <option value="PRINT">Print</option>
+                        </select>
+                      
+
+                        <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card" id="grid">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" id="gridResult">
+                            <thead>
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Item Type</th>
+                                    <th>Group Item</th>
+                                    <th>Customer Group</th>
+                                    <th>Item Name</th>
+                                    <th>Unit Price</th>
+                                    <th>UoM</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+               @* <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var data_group = [];
+    var data_item = [];
+    var data_cust = [];
+    var arr_result = [];
+    var tbl_inquiry;
+    $(document).ready(function () {
+        GetItemGroup();
+        GetItem();
+        GetCustomer();
+        $('#selType').select2();
+
+        $("#btnViewReport").click(function (e) {
+            var item_grp = $('#selGroup').val();
+            var item_cd = $('#selItem').val();
+            var type = $('#selType').val();
+            var cust = $('#selCustomer').val();
+
+            Inquiry(item_grp, item_cd, type, cust);
+        });
+    });
+
+    function GetItemGroup() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetItemGroup")',
+
+            success: function (response) {
+                data_group = response.Data;
+
+                $('#selGroup').select2({
+                    data: data_group
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+
+    }
+
+    function GetItem() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetSPA02MT")',
+
+            success: function (response) {
+                data_item = response.Data;
+
+                $('#selItem').select2({
+                    data: data_item
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+
+    }
+
+    function GetCustomer() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetCustomerGroup")',
+
+            success: function (response) {
+                data_cust = response.Data;
+
+                $('#selCustomer').select2({
+                    data: data_cust
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+
+    }
+
+    function Inquiry(itemGrp, itemCd, tipe, custGroup) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/ItemMasterTreatment/GetQueryData")',
+
+            data: { itemGrp: itemGrp, itemCd: itemCd, Type: tipe, Customer: custGroup },
+
+            success: function (response) {
+                //if (response.Status == "success") {
+                //    $('#mdlProgress').modal('hide');
+                    arr_result = response.Data;
+                    tbl_inquiry = $('#gridResult').DataTable({
+                        data: arr_result,
+                        destroy: true,
+                        columns: [
+                            { data: "ITEM_CD" },
+                            { data: "TYPE_NM" },
+                            { data: "GROUP_NM" },
+                            { data: "CUSTOMER" },
+                            { data: "ITEM_NM" },
+                            { data: "HARGA" },
+                            { data: "UNIT_NM" },
+                            { data: "STOCK" }
+                         
+                        ],
+                        processing: true,
+
+                    });
+
+
+                //}
+                //else {
+                //    $('#mdlProgress').modal('hide');
+                //    //$("label[for = lblMsgHdr]").text("An Error Occured..");
+                //    //$("label[for = lblMsgDet]").text(result.ErrMsg);
+                //    // $('#mdlNotif').modal('show');
+
+
+                //}
+
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+    }
+</script>

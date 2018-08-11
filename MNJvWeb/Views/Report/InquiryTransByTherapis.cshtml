@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-edit"></i> Report</h1>
+        <p>Inquiry Transaction By Therapis</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card2">
+            <div class="bs-component">
+                <form id="frm1" class=" form-inline">
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="70" align="right">Periode &nbsp; </td>
+                            <td width="200">
+                                <input type="text" class="form-control" id="txtPeriodStart" placeholder="Start">
+                                ~
+                                <input type="text" class="form-control" id="txtPeriodEnd" placeholder="End">
+                            </td>
+
+                            <td width="70" align="right">Therapis &nbsp;</td>
+
+                            <td width="10px">
+                                <select class="form-control" id="cboTherapis" style="width:105px" name="cboTherapis" required>
+                                    <option value="0">ALL</option>
+                                    <option value="1">Threatment</option>
+                                    <option value="2">Product</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="radio" checked="checked" name='optPrint' id="optPrint" value='1' />Print<br />
+                            </td>
+                            <td>
+                                <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="70" align="right">
+                                Gerai &nbsp;
+                            </td>
+                            <td width="190">
+                                <select class="form-control" id="cboGerai" style="width:190px" name="cboGerai">
+                                    <option value="0">All</option>
+                                    <option value="1">Amount</option>
+                                </select>
+                            </td>
+
+                            <td width="70" align="right">Type &nbsp;</td>
+                            <td width="10px">
+                                <select class="form-control" id="cboType" style="width:105px" name="cboType" required>
+                                    <option value="0">ALL</option>
+                                    <option value="1">Threatment</option>
+                                    <option value="2">Product</option>
+                                </select>
+                            </td>
+
+                            <td width="150px">
+                                <input type="checkbox" name="chkIsDetail" id="chkIsDetail" value="1" checked="checked" />Summary By Gerai
+                            </td>
+                            <td>
+                                <input type="radio" name='optToExcel' id="optToExcel" value='2' />Export to Excel<br />
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+
+
+        <div class="card" id="grid" style="display:none">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" id="gridResult">
+                            <thead>
+                                <tr>
+                                    <th>SW</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Theraphis</th>
+                                    <th>Non Voucher</th>
+                                    <th>Prepaid Package</th>
+                                    <th>Gift Voucher</th>
+                                    <th>Grand Total</th>
+                                    <th>Commision</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>
+            </div>
+        </div>
+    </div>
+</div>    

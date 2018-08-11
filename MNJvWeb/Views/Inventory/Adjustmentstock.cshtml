@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/js/InquiryTop10ByItem.js"></script>
+
+<div class="page-title">
+    <h1>Input Adustment Stock</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card2">
+            <div class="bs-component">
+                <form id="frm1" class=" form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">Period</label>
+                        <input type="text" class="form-control" id="txtPeriodStart" placeholder="Start">
+                        <label for="exampleInputName2">~</label>
+                        <input type="text" class="form-control" id="txtPeriodEnd" placeholder="End">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Base On</label>
+                        <select class="form-control" id="selBaseOn" name="selBaseOn" required>
+                            <option value="0">Quantity</option>
+                            <option value="1">Amount</option>
+                        </select>
+                        <label class="control-label " for="exampleInputEmail2">Gerai</label>
+
+                        <select class="form-control" id="selGerai" name="selGerai" required>
+                            <option value="">ALL</option>
+                        </select>
+                        <label class="control-label" for="exampleInputEmail2">Action</label>
+
+                        <select class="form-control" id="selÀction" name="selÀction" required>
+                            <option value="PREVIEW">Preview</option>
+                            <option value="PRINT">Print</option>
+                        </select>
+                        <label for="exampleInputEmail2" class=" control-label">Type</label>
+                        <select class="form-control" id="selRadio" name="selRadio" required>
+                            <option value="ALL">All</option>
+                            <option value="TREATMENT">Treatment</option>
+                            <option value="PRODUCT">Product</option>
+                        </select>
+                        <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card" id="grid" style="display:none">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" id="gridResult">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Treatment / Item Name</th>
+                                    <th>Qty</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
