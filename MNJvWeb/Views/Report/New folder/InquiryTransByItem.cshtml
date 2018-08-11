@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/js/InquiryTransByItemJs.js"></script>
+<script src="~/Scripts/select2.js"></script>
+
+<div class="page-title">
+
+    <div>
+        <h1><i class="fa fa-edit"></i> Report</h1>
+        <p>Inquiry Transaction By Item</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Parameters</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+
+                                <div class="bs-component">
+                                    <form id="frm1" class=" form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputName2">Period</label>
+                                            <input type="text" class="form-control" id="txtPeriodStart" placeholder="Start">
+                                            <label for="exampleInputName2">~</label>
+                                            <input type="text" class="form-control" id="txtPeriodEnd" placeholder="End">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2">Item</label>
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" id="txtItemId"><span class="input-group-btn">
+                                                    <button class="input-group-addon" type="button" id="btnFindItem">?</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" id="txtItemDesc">
+                                        </div>
+                                    </form>
+                                    <br />
+                                    <form id="frm2" class=" col-md-12 form-inline">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2" class=" control-label">Type</label>
+
+                                            <select class="form-control" id="selRadio" name="selRadio" required>
+                                                <option value="ALL">All</option>
+                                                <option value="TREATMENT">Treatment</option>
+                                                <option value="PRODUCT">Product</option>
+                                            </select>
+                                            <label class="control-label " for="exampleInputEmail2">Gerai</label>
+
+                                            <select class="form-control" id="selGerai" name="selGerai" required>
+                                                <option value="">ALL</option>
+                                            </select>
+                                            <label class="control-label" for="exampleInputEmail2">Action</label>
+
+                                            <select class="form-control" id="selÀction" name="selÀction" required>
+                                                <option value="PREVIEW">Preview</option>
+                                                <option value="PRINT">Print</option>
+                                            </select>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div id="grid" style="display:none" class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" id="gridResult">
+                            <thead style="background-color:blue; color:white">
+                                <tr>
+                                    <th>SW</th>
+                                    <th>TGL</th>
+                                    <th>ITEMNM</th>
+                                    <th>QTY</th>
+                                    <th>AMT</th>
+                                    <th>PAKET</th>
+                                    <th>GIFT</th>
+                                    <th>REIMBSEMEN</th>
+                                    <th>PROMO</th>
+                                    <th>TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+<div id="mdlItem" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Find Item</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <table class="table table-hover table-bordered" id="tblItem">
+                        <thead>
+                            <tr>
+                                <th>ITEM CD</th>
+                                <th>ITEM NM</th>
+                                <th>HARGA</th>
+                                <th>STOCK</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><
+    </div>
+</div>
+
