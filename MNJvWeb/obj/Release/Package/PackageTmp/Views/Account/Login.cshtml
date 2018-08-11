@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/LoginStyle.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<div>
+    @if (@ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <a href="#" id="btn_close" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Ooppss!</strong> @ViewBag.Error
+        </div>
+    }
+
+</div>
+
+<div class="main">
+
+    <div class="container">
+        <center>
+            <div class="middle">
+                <div id="login">
+                    @using (Html.BeginForm("Authenticate", "Account", FormMethod.Post))
+                    {
+                        <form>
+                            <fieldset class="clearfix">
+                                <p><span class="fa fa-user"></span><input type="text" id="txtusrName" name="txtusrName" placeholder="Username" required></p>
+                                <p><span class="fa fa-lock"></span><input type="password" id="txtPassword" name="txtPassword" placeholder="Password" required></p>
+                                <div>
+
+                                    <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Sign In"></span>
+                                </div>
+                            </fieldset>
+                            <div class="clearfix"></div>
+
+                        </form>
+                    }
+
+                    <div class="clearfix"></div>
+                   
+                </div> <!-- end login -->
+                &nbsp;
+                <div class="logo"> 
+                    <img src="~/image/MNJIcon.png" />
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </center>
+    </div>
+</div>

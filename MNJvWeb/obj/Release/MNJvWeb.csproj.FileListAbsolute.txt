@@ -1,0 +1,115 @@
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\MNJvWeb.dll.config
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\MNJvWeb.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\MNJvWeb.pdb
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Antlr3.Runtime.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\EntityFramework.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Newtonsoft.Json.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Owin.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Helpers.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Mvc.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Optimization.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Razor.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\WebGrease.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Helpers.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Mvc.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Optimization.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.Razor.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Newtonsoft.Json.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Antlr3.Runtime.pdb
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\EntityFramework.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\obj\Release\RdlCompile.cache
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\obj\Release\RdlCompile.compiled
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\obj\Release\MNJvWeb.dll
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\obj\Release\MNJvWeb.pdb
+C:\Users\Aditya.Baskoro\documents\visual studio 2013\Projects\MNJvWeb\MNJvWeb\bin\Oracle.ManagedDataAccess.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\MNJvWeb.dll.config
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\MNJvWeb.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\MNJvWeb.pdb
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Antlr3.Runtime.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\EntityFramework.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\EntityFramework.SqlServer.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Facebook.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Google.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Twitter.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Newtonsoft.Json.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Oracle.ManagedDataAccess.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Owin.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Helpers.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Mvc.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Optimization.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Razor.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Deployment.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Razor.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\WebGrease.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Helpers.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Mvc.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Optimization.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.Razor.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Deployment.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\System.Web.WebPages.Razor.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Newtonsoft.Json.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Antlr3.Runtime.pdb
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\EntityFramework.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\EntityFramework.SqlServer.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Facebook.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Google.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.Twitter.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\obj\Release\RdlCompile.cache
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\obj\Release\RdlCompile.compiled
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\obj\Release\MNJvWeb.dll
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\obj\Release\MNJvWeb.pdb
+D:\MSU\Net\C#\Web\MNJvWeb\MNJvWeb\obj\Release\MNJvWeb.csprojResolveAssemblyReference.cache

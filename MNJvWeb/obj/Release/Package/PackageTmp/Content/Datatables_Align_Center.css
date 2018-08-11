@@ -1,0 +1,9 @@
+﻿/*
+ * Table styles
+ */
+
+table.dataTable th.dt-center,
+table.dataTable td.dt-center,
+table.dataTable td.dataTables_empty {
+  text-align: center;
+}

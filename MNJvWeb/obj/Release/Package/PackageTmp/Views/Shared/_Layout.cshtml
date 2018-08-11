@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+	<link href="~/Content/style.css" rel="stylesheet" />
+  
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+  
+    <script src="~/Scripts/main.js"></script>
+   
+    <title>::mom n jo::</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    -->
+
+
+
+</head>
+<body>
+	<div id="pi-all" class="pi-header-row-fixed">
+
+	<!-- Header -->
+	<div class="pi-main-header-w">
+
+	<div class="pi-header-row-sticky-w">
+	<!-- Header row -->
+	<div class="pi-section-w pi-section-header-w pi-section-white pi-section-header-lg-w pi-header-row-sticky pi-shadow-bottom pi-header-row-sticky-active" style="background:rgba(241,244,244,0.9);">
+	<div class="pi-section pi-section-header pi-section-header-lg pi-clearfix">
+		<!-- Logo -->
+		<div class="pi-header-block pi-header-block-logo">
+			<a href="/"><img src="~/Content/img/logo-base.png" alt="" border="1" width="99"></a>
+		</div>
+		<!-- End logo -->
+		<!-- Menu -->
+		<div class="pi-header-block pi-pull-right" style="margin-right: 0px;">
+		<ul class="pi-simple-menu pi-full-height pi-hidden-sm">
+			<li class=""><a href="http://momnjo.com/index"><span>Home</span></a></li>
+
+			@*<li class=""><a href="http://momnjo.com/aboutus"><span>Master</span></a>
+				<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+					<li><a href=""><span>Create Document</span></a></li>
+					<li><a href=""><span>List Document</span></a></li>
+					<li><a href=""><span>Print Document</span></a></li>
+				</ul>
+			</li>*@
+			<li class=""><a href="#"><span>Master</span></a>
+				<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+                    <li><a href="/Master/ItemMaster"><span>Item Master</span></a></li>
+                    <li><a href="/Master/PrepaidPackageMaster"><span>Prepaid Package Master</span></a></li>
+                    <li><a href="/Master/EmployeeMaster"><span>Employee Master</span></a></li>
+                    <li><a href="/Master/CustomerMaster"><span>Customer Master</span></a></li>
+                    <li><a href="/Master/CodeMaster"><span>Code Master</span></a></li>
+
+					@*<li><a href="@Url.Action("ListDocument","NREA")">List Document</a></li>
+					<li><a href="@Url.Action("ListCompleteDocument","NREA")">Print Document</a></li>
+					<li><a href="@Url.Action("DocumentHistory", "NREA")"><i class="fa fa-history"></i> Document History</a></li>*@
+				</ul>
+			</li>
+
+			<li class=""><a href="#"><span>Administration</span></a>
+				<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+                    <li><a href="/Administration/Absenci"><span>Absenci</span></a></li>
+                    <li><a href="/Administration/ListAbsenci"><span>List Absenci</span></a></li>
+                    <li><a href="/Administration/ListUpdateAbsenci"><span>List Update Absenci</span></a></li>
+					@*<li><a href="/CS/Create"><span>Create</span></a></li>
+					<li><a href="/CS/Draft">Outstanding CS</a></li>*@
+				</ul>
+			</li>	
+
+            <li class="">
+                <a href="#"><span>Customer</span></a>
+                <ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+                    <li><a href="/Customer/InputVoucherDiscountPromotion"><span>Input Voucher Discount Promotion</span></a></li>
+                    <li><a href="/Customer/InputVoucherReimbursement"><span>Input Voucher Reimbursement</span></a></li>
+                    <li><a href="/Customer/InputGiftVoucher"><span>Input Gift Voucher</span></a></li>
+                    <li><a href="/Customer/InputPrepaidPackage"><span>Input Prepaid Package</span></a></li>
+                    <li><a href="/Customer/UpdateStatusPrepaidPackage"><span>Update Status Prepaid Package</span></a></li>
+                    <li><a href="/Customer/InputTopUpPrepaidPackage"><span>Input Top Up Prepaid Package</span></a></li>
+                    <li><a href="/Customer/InputMovePrepaidPackageTreatment"><span>Input Move Prepaid Package Treatment</span></a></li>
+                    <li><a href="/Customer/Transaction"><span>Transaction</span></a></li>
+                </ul>
+            </li>
+
+			<li class=""><a href="#"><span>Report</span></a>
+                <ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark" style="width:auto">
+                    <li><a href="/Report/ListRecapDailyTransaction"><span>List Recap Daily Transaction</span></a></li>
+                    <li><a href="/Report/ListTransactionByPeriod"><span>List Transaction By Period</span></a></li>
+                    <li><a href="/Report/ListTransactioniByTreatment"><span>List Transactioni By Treatment</span></a></li>
+                    <li><a href="/Report/ListTransactionPerTeraphis"><span>List Transaction Per Teraphis</span></a></li>
+                    <li><a href="/Report/ListToptenTransaction"><span>List Top ten Transaction</span></a></li>
+                    <li><a href="/Report/ListToptenCustomer"><span>List Top ten Customer</span></a></li>
+                    <li><a href="/Report/ListCashIn"><span>List Cash In</span></a></li>
+                    <li><a href="/Report/ListPackageMember"><span>List Package Member</span></a></li>
+                    <li><a href="/Report/ListCommisionTeraphis"><span>List Commision Teraphis</span></a></li>
+                    <li><a href="/Report/ListStatusVoucherPackageMember"><span>List Status Prepaid Package</span></a></li>
+                    <li><a href="/Report/ListTransactionBaseOnTreatmentType"><span>List Transaction Base On Treatment Type</span></a></li>
+                    <li><a href="/Report/ListTransactionByCustomerNewOld"><span>List Transaction By Customer (New & Old)</span></a></li>
+                    <li><a href="/Report/ListHistoryDeleteTransaction"><span>List History Delete Transaction</span></a></li>
+
+
+                    @*<li><a href="/Report/InquiryTransByItem"><span>Trans By Item</span></a></li>
+            <li><a href="/Report/InquiryTransByTherapis"><span>Trans By Theraphis</span></a></li>
+            <li><a href="/Report/InquiryTopTenTransaction"><span>Top 10 Transaction</span></a></li>
+            <li><a href="/Report/InquiryTransactionByPeriod"><span>Trans By Period</span></a></li>*@
+                </ul>
+			</li>			
+ 			<li class=""><a href="#"><span>Inventory</span></a>
+				<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+                    <li><a href="/Inventory/Adjustmentstock"><span>Adjustment stock</span></a></li>
+                    <li><a href="/Inventory/InputGoodReceived"><span>Input Good Received</span></a></li>
+                    <li><a href="/Inventory/ListGoodReceived"><span>List Good Received</span></a></li>
+                    <li><a href="/Inventory/ListGoodIssue"><span>List Good Issue</span></a></li>
+                    <li><a href="/Inventory/ListStock"><span>List Stock</span></a></li>
+                    <li><a href="/Inventory/ListAdjustment"><span>List Adjustment</span></a></li>
+
+					@*<li><a href="/Report/ViewAllApprovedDocument"><span>Inquiry Transaction By Item</span></a></li>*@
+				</ul>
+			</li>	
+			<li class=""><a href="#"><span>Wiyono</span></a>
+				<ul class="pi-submenu pi-has-border pi-items-have-borders pi-has-shadow pi-submenu-dark">
+					<li><a href="/Account/ChangePassword"><span>Change Password</span></a></li>
+					<li><a href="/Account/Logout"><span>Logout</span></a></li>
+				</ul>			
+			</li>
+		</ul>
+		</div>
+		<!-- End menu -->			
+	</div>
+	</div>
+	</div>
+
+	@RenderBody()
+	@RenderSection("scripts", required: false)
+
+</body>
+</html>

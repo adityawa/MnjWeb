@@ -1,0 +1,239 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/js/InquiryTransByPeriod.js"></script>
+
+<div class="page-title">
+    <div>
+        <img src="~/image/logo.png" />
+    </div>
+    <div>
+        <h1><i class="fa fa-edit"></i> Form Permintaan Pembayaran</h1>
+        <p>Create Document</p>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Parameters</a>
+                            </h4>
+                        </div>
+                        @*<div id="collapseOne" class="panel-collapse collapse in">*@
+                            <div class="panel-body">
+                                <div class="col-lg-5">
+                                    <div class="bs-component">
+                                        <form class="form-horizontal" id="frm_hdr_left" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="NoRef">Div/Dept Requestor</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="selDivisi" name="selDivisi" required>
+                                                        <option value="">--choose a division--</option>
+                                                        <option value="Corporate">Corporate</option>
+                                                        <option value="Refinery">Refinery</option>
+                                                        <option value="Plantation">Plantation</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Company</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="selCompany" name="selCompany" required>
+                                                        <option value="" selected="selected">--choose company--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputLocation">Location</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="selLocation" name="selLocation" required>
+                                                        <option value="" selected="selected">--choose Location--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Paid To</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtPaidTo" name="txtPaidTo" placeholder="Paid To.." class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Payment Type</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="selPaymentType" name="selPaymentType" required>
+                                                        <option value="">--choose a Payment Type--</option>
+                                                        <option value="Dana Petty Cash/Materai">Dana Petty Cash/Materai</option>
+                                                        <option value="Cash">Cash</option>
+                                                        <option value="Giro/Cek">Giro/Cek</option>
+                                                        <option value="Transfer">Transfer</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Currency</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="selCurrency" name="selCurrency" required>
+                                                        <option value="" selected="selected">--choose currency--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Due Date</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtdueDate" class="form-control" />
+                                                    <input type="checkbox" style="display:none" id="chkImmediately" value="Immediately"><br />
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5 col-lg-offset-1">
+                                    <div class="bs-component">
+                                        <form class="form-horizontal" id="frm_hdr_right" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="NoRef">No.Referensi</label>
+                                                <div class="col-lg-8">
+                                                    <input class="form-control" id="txtNoRef" name="txtNoRef" type="text" placeholder="No. Referensi" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Date</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtdocDate" name="txtdocDate" class="form-control" required disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Bank</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtBankName" name="txtBankName" placeholder="Bank Name" class="form-control" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Bank Account</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtBankAccount" name="txtBankAccount" placeholder="Bank Account No" class="form-control" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label" for="inputPassword">Account Name</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" id="txtAccountName" name="txtAccountName" placeholder="Account Name" class="form-control" required />
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-10">
+
+                                        <button class="btn btn-primary" id="btnSave" type="submit">Submit</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @*</div>*@
+                    </div>
+
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="mdlItem" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Find Item</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <table class="table table-hover table-bordered" id="tblItem">
+                        <thead>
+                            <tr>
+                                <th>ITEM CD</th>
+                                <th>ITEM NM</th>
+                                <th>HARGA</th>
+                                <th>STOCK</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><
+    </div>
+</div>
+
+<div id="mdlCust" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Find Employee</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <table class="table table-hover table-bordered" id="tblCust">
+                        <thead>
+                            <tr>
+                                <th>CUST CD</th>
+                                <th>CUST NM</th>
+                                <th>ENTER DT</th>
+                                <th>Address</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><
+    </div>
+</div>

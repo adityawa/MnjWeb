@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
+
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/js/InquiryTop10ByItem.js"></script>
+
+<div class="page-title">
+    <h1>List Transaction By Date</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        
+        <div class="card2">
+            <div class="bs-component">
+                <form id="frm1" class=" form-inline">
+                    <div class="form-group">
+                        <label >Period</label>
+                        <input type="text" class="form-control" id="txtPeriodStart" placeholder="Start">
+                        <label >~</label>
+                        <input type="text" class="form-control" id="txtPeriodEnd" placeholder="End">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Item</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="txtItemId"><span class="input-group-btn">
+                                <button class="input-group-addon" type="button" id="btnFindItem">?</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="txtCusCd"><span class="input-group-btn">
+                                <button class="input-group-addon" type="button" id="btnFindItem">?</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Therapis</label>
+                        <select class="form-control" id="cboTherapis" name="cboTherapis" required>
+                            <option value="0">Quantity</option>
+                            <option value="1">Amount</option>
+                        </select>
+                        <label class="control-label " >Gerai</label>
+
+                        <select class="form-control" id="cboGerai" name="cboGerai" required>
+                            <option value="">ALL</option>
+                        </select>
+
+                        <label class="control-label" >Transaction Type</label>
+                        <select class="form-control" id="cboType" name="cboType" required>
+                            <option value="PREVIEW">Preview</option>
+                            <option value="PRINT">Print</option>
+                        </select>
+
+                        <label class="control-label">Payment</label>
+                        <select class="form-control" id="cboPayment" name="cboPayment" required>
+                            <option value="PREVIEW">Preview</option>
+                            <option value="PRINT">Print</option>
+                        </select>
+
+                        <label class="control-label">Card Name</label>
+                        <select class="form-control" id="cboCard" name="cboCard" required>
+                            <option value="PREVIEW">Preview</option>
+                            <option value="PRINT">Print</option>
+                        </select>
+
+                        <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card" id="grid" style="display:none">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" id="gridResult">
+                            <thead>
+                                <tr>
+                                    <th>sw</th>
+                                    <th>Gerai</th>
+                                    <th>Inv No</th>
+                                    <th>Date</th>
+                                    <th>Cust Code</th>
+                                    <th>Cust Name</th>
+                                    <th>Therapis</th>
+                                    <th>Item Name</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Amount</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                    <th>Voucher</th>
+                                    <th>Voucher No</th>
+                                    <th>Voucher Type</th>
+                                    <th>Commission</th>
+                                    <th>Cash Paid</th>
+                                    <th>Additonal Amt</th>
+                                    <th>Additonal %</th>
+                                    <th>Grand Total</th>
+                                    <th>Payment</th>
+                                    <th>Card Name</th>
+                                    <th>Card No</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
