@@ -19,7 +19,7 @@ namespace MNJvWeb.Controllers
             DBHelper objDBHelp = new DBHelper();
             DataTable dtbl = objDBHelp.GetData("SPA02MT",null, new string[]{"USED"}, new string[]{"Y"});
             List<SPA02MTModel> list = new List<SPA02MTModel>();
-           // list = ObjectConverter.DataTableToList<SPA02MTModel>(dtbl);
+            list.Add(new SPA02MTModel { id = "0", text = "All" });
             for (int i = 0; i < dtbl.Rows.Count; i++)
             {
                 list.Add(new SPA02MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() });
@@ -75,12 +75,11 @@ namespace MNJvWeb.Controllers
             return JsonResult;
         }
 
-        [HttpGet]
-        public JsonResult GetItemGroup()
+        public JsonResult GetUom()
         {
             DBHelper objDBHelp = new DBHelper();
 
-            DataTable dtbl = objDBHelp.GetData("SPA01MT", null, new string[] { "GRP_CD", "USED" }, new string[] { "GROUP ITEM", "Y" });
+            DataTable dtbl = objDBHelp.GetData("SPA01MT", null, new string[] { "GRP_CD" }, new string[] { "UNIT QUANTITY" });
             List<SPTA01MTModel> list = new List<SPTA01MTModel>();
             for (int i = 0; i < dtbl.Rows.Count; i++)
             {
@@ -88,6 +87,24 @@ namespace MNJvWeb.Controllers
             }
 
             //list = ObjectConverter.DataTableToList<SPTA01MTModel>(dtbl);
+
+            var JsonResult = Json(new { Data = list }, JsonRequestBehavior.AllowGet);
+            JsonResult.MaxJsonLength = Int32.MaxValue;
+            return JsonResult;
+        }
+
+        [HttpGet]
+        public JsonResult GetItemGroup()
+        {
+            DBHelper objDBHelp = new DBHelper();
+
+            DataTable dtbl = objDBHelp.GetData("SPA01MT", null, new string[] { "GRP_CD", "USED" }, new string[] { "GROUP ITEM", "Y" });
+            List<SPTA01MTModel> list = new List<SPTA01MTModel>();
+            list.Add(new SPTA01MTModel { id = "0", text = "All" });
+            for (int i = 0; i < dtbl.Rows.Count; i++)
+            {
+                list.Add(new SPTA01MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() });
+            }
 
             var JsonResult = Json(new { Data = list }, JsonRequestBehavior.AllowGet);
             JsonResult.MaxJsonLength = Int32.MaxValue;
@@ -159,6 +176,7 @@ namespace MNJvWeb.Controllers
 
             DataTable dtbl = objDBHelp.GetData("SPA01MT", null, new string[] { "GRP_CD", "USED" }, new string[] { "ITEM GROUP BY CUSTOMER GROUP", "Y" });
             List<SPTA01MTModel> list = new List<SPTA01MTModel>();
+            list.Add(new SPTA01MTModel { id = "0", text = "All" });
             for (int i = 0; i < dtbl.Rows.Count; i++)
             {
                 list.Add(new SPTA01MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() });

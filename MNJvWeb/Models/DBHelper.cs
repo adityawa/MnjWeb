@@ -37,7 +37,7 @@ namespace MNJvWeb.Models
 
             sbsSql.Append(" from " + tableName);
 
-            if (whereArgs!=null && whereVal!=null && whereArgs.Length == whereVal.Length)
+            if (whereArgs != null && whereVal != null && whereArgs.Length == whereVal.Length)
             {
                 sbsSql.Append(" Where ");
 
@@ -45,20 +45,34 @@ namespace MNJvWeb.Models
                 {
                     if (k == 0)
                     {
-                        sbsSql.Append(whereArgs[k] + " = '" + whereVal[k]+"'");
+                        sbsSql.Append(whereArgs[k] + " = '" + whereVal[k] + "'");
                     }
                     else
                     {
-                        sbsSql.Append("AND " + whereArgs[k] + " = '" + whereVal[k]+"'");
+                        sbsSql.Append("AND " + whereArgs[k] + " = '" + whereVal[k] + "'");
                     }
 
                 }
             }
 
             DBManager objDBMgr = new DBManager();
-             dtbl  = objDBMgr.GetData(sbsSql.ToString(), out strErrMsg);
+            dtbl = objDBMgr.GetData(sbsSql.ToString(), out strErrMsg);
 
             return dtbl;
+        }
+
+        public  string GetAutoNo(string tableName, string fieldName)
+        {
+            DataTable dtbl = new DataTable();
+            int tempNo = 0;
+            DBManager objDBMgr = new DBManager();
+            string ssql = string.Format("SELECT MAX({0}) from {1}", fieldName, tableName);
+            DBManager db = new DBManager();
+            string errMsg = string.Empty;
+            dtbl = db.GetData(ssql, out errMsg);
+            if (dtbl.Rows.Count > 0)
+                tempNo = dtbl.Rows[0][0] == null ? 0 : Convert.ToInt32(dtbl.Rows[0][0].ToString());
+            return (tempNo + 1).ToString();
         }
     }
 }

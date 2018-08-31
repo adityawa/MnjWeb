@@ -6,48 +6,7 @@
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="MnJDbContext" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="MnJDbContext (Web.config)" ParameterPrefix=":" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.MnJDbContext.ConnectionString" Provider="Oracle.ManagedDataAccess.Client" />
         </Connections>
-        <Tables>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="INQUIRY_LIST_BY_ITEM_RPTTableAdapter" GeneratorDataComponentClassName="INQUIRY_LIST_BY_ITEM_RPTTableAdapter" Name="INQUIRY_LIST_BY_ITEM_RPT" UserDataComponentName="INQUIRY_LIST_BY_ITEM_RPTTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="MnJDbContext (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT   MAX(TRIM(TO_CHAR(TO_DATE(a.indate,'YYYYMMDD'),'DD-MM-YYYY'))) tgl,
- MAX(c.item_nm) ItemNm,
-SUM(b.qty) qty,
-SUM(b.total) amt,
-SUM(DECODE(NVL(e.disc_type,'9'),'1',b.voucher_amt,0)) paket,
-SUM(DECODE(NVL(e.disc_type,'9'),'2',b.voucher_amt,0)) gift,
-SUM(DECODE(NVL(e.disc_type,'9'),'3',b.voucher_amt,0)) reimbsemen,
-SUM(DECODE(NVL(e.disc_type,'9'),'4',b.voucher_amt,0)) promo,
-SUM(b.total+DECODE(NVL(e.disc_type,'9'),'1',b.voucher_amt,'2',b.voucher_amt,0)) total,
-'INQURY TRANSACTION BY TREATMENT / PRODUCT' total,
-'10-01-2017 ~ 12-12-2017' period,
- 'ALL' ttype
-
-FROM     spa12it a, spa13it b, spa02mt c, spa15it e</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="TGL" DataSetColumn="TGL" />
-              <Mapping SourceColumn="ITEMNM" DataSetColumn="ITEMNM" />
-              <Mapping SourceColumn="QTY" DataSetColumn="QTY" />
-              <Mapping SourceColumn="AMT" DataSetColumn="AMT" />
-              <Mapping SourceColumn="PAKET" DataSetColumn="PAKET" />
-              <Mapping SourceColumn="GIFT" DataSetColumn="GIFT" />
-              <Mapping SourceColumn="REIMBSEMEN" DataSetColumn="REIMBSEMEN" />
-              <Mapping SourceColumn="PROMO" DataSetColumn="PROMO" />
-              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
-              <Mapping SourceColumn="TOTAL1" DataSetColumn="TOTAL1" />
-              <Mapping SourceColumn="PERIOD" DataSetColumn="PERIOD" />
-              <Mapping SourceColumn="TTYPE" DataSetColumn="TTYPE" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-        </Tables>
+        <Tables />
         <Sources />
       </DataSource>
     </xs:appinfo>
@@ -55,66 +14,19 @@ FROM     spa12it a, spa13it b, spa02mt c, spa15it e</CommandText>
   <xs:element name="DSReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSReport" msprop:Generator_UserDSName="DSReport">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="INQUIRY_LIST_BY_ITEM_RPT" msprop:Generator_TableClassName="INQUIRY_LIST_BY_ITEM_RPTDataTable" msprop:Generator_TableVarName="tableINQUIRY_LIST_BY_ITEM_RPT" msprop:Generator_RowChangedName="INQUIRY_LIST_BY_ITEM_RPTRowChanged" msprop:Generator_TablePropName="INQUIRY_LIST_BY_ITEM_RPT" msprop:Generator_RowDeletingName="INQUIRY_LIST_BY_ITEM_RPTRowDeleting" msprop:Generator_RowChangingName="INQUIRY_LIST_BY_ITEM_RPTRowChanging" msprop:Generator_RowEvHandlerName="INQUIRY_LIST_BY_ITEM_RPTRowChangeEventHandler" msprop:Generator_RowDeletedName="INQUIRY_LIST_BY_ITEM_RPTRowDeleted" msprop:Generator_RowClassName="INQUIRY_LIST_BY_ITEM_RPTRow" msprop:Generator_UserTableName="INQUIRY_LIST_BY_ITEM_RPT" msprop:Generator_RowEvArgName="INQUIRY_LIST_BY_ITEM_RPTRowChangeEvent">
+        <xs:element name="ItemMstProd" msprop:Generator_TableClassName="ItemMstProdDataTable" msprop:Generator_TableVarName="tableItemMstProd" msprop:Generator_TablePropName="ItemMstProd" msprop:Generator_RowDeletingName="ItemMstProdRowDeleting" msprop:Generator_RowChangingName="ItemMstProdRowChanging" msprop:Generator_RowEvHandlerName="ItemMstProdRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemMstProdRowDeleted" msprop:Generator_UserTableName="ItemMstProd" msprop:Generator_RowChangedName="ItemMstProdRowChanged" msprop:Generator_RowEvArgName="ItemMstProdRowChangeEvent" msprop:Generator_RowClassName="ItemMstProdRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="TGL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTGL" msprop:Generator_ColumnPropNameInRow="TGL" msprop:Generator_ColumnPropNameInTable="TGLColumn" msprop:Generator_UserColumnName="TGL" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="ITEMNM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnITEMNM" msprop:Generator_ColumnPropNameInRow="ITEMNM" msprop:Generator_ColumnPropNameInTable="ITEMNMColumn" msprop:Generator_UserColumnName="ITEMNM" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="QTY" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQTY" msprop:Generator_ColumnPropNameInRow="QTY" msprop:Generator_ColumnPropNameInTable="QTYColumn" msprop:Generator_UserColumnName="QTY" type="xs:decimal" minOccurs="0" />
-              <xs:element name="AMT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAMT" msprop:Generator_ColumnPropNameInRow="AMT" msprop:Generator_ColumnPropNameInTable="AMTColumn" msprop:Generator_UserColumnName="AMT" type="xs:decimal" minOccurs="0" />
-              <xs:element name="PAKET" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPAKET" msprop:Generator_ColumnPropNameInRow="PAKET" msprop:Generator_ColumnPropNameInTable="PAKETColumn" msprop:Generator_UserColumnName="PAKET" type="xs:decimal" minOccurs="0" />
-              <xs:element name="GIFT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnGIFT" msprop:Generator_ColumnPropNameInRow="GIFT" msprop:Generator_ColumnPropNameInTable="GIFTColumn" msprop:Generator_UserColumnName="GIFT" type="xs:decimal" minOccurs="0" />
-              <xs:element name="REIMBSEMEN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnREIMBSEMEN" msprop:Generator_ColumnPropNameInRow="REIMBSEMEN" msprop:Generator_ColumnPropNameInTable="REIMBSEMENColumn" msprop:Generator_UserColumnName="REIMBSEMEN" type="xs:decimal" minOccurs="0" />
-              <xs:element name="PROMO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPROMO" msprop:Generator_ColumnPropNameInRow="PROMO" msprop:Generator_ColumnPropNameInTable="PROMOColumn" msprop:Generator_UserColumnName="PROMO" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TOTAL1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL1" msprop:Generator_ColumnPropNameInRow="TOTAL1" msprop:Generator_ColumnPropNameInTable="TOTAL1Column" msprop:Generator_UserColumnName="TOTAL1" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="41" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PERIOD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPERIOD" msprop:Generator_ColumnPropNameInRow="PERIOD" msprop:Generator_ColumnPropNameInTable="PERIODColumn" msprop:Generator_UserColumnName="PERIOD" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="23" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="TTYPE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTTYPE" msprop:Generator_ColumnPropNameInRow="TTYPE" msprop:Generator_ColumnPropNameInTable="TTYPEColumn" msprop:Generator_UserColumnName="TTYPE" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="INQUIRY_LIST_BY_THERAPHIS" msprop:Generator_TableClassName="INQUIRY_LIST_BY_THERAPHISDataTable" msprop:Generator_TableVarName="tableINQUIRY_LIST_BY_THERAPHIS" msprop:Generator_TablePropName="INQUIRY_LIST_BY_THERAPHIS" msprop:Generator_RowDeletingName="INQUIRY_LIST_BY_THERAPHISRowDeleting" msprop:Generator_RowChangingName="INQUIRY_LIST_BY_THERAPHISRowChanging" msprop:Generator_RowEvHandlerName="INQUIRY_LIST_BY_THERAPHISRowChangeEventHandler" msprop:Generator_RowDeletedName="INQUIRY_LIST_BY_THERAPHISRowDeleted" msprop:Generator_UserTableName="INQUIRY_LIST_BY_THERAPHIS" msprop:Generator_RowChangedName="INQUIRY_LIST_BY_THERAPHISRowChanged" msprop:Generator_RowEvArgName="INQUIRY_LIST_BY_THERAPHISRowChangeEvent" msprop:Generator_RowClassName="INQUIRY_LIST_BY_THERAPHISRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="SW" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SW" msprop:Generator_ColumnVarNameInTable="columnSW" msprop:Generator_ColumnPropNameInTable="SWColumn" msprop:Generator_UserColumnName="SW" type="xs:string" minOccurs="0" />
-              <xs:element name="TGL" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TGL" msprop:Generator_ColumnVarNameInTable="columnTGL" msprop:Generator_ColumnPropNameInTable="TGLColumn" msprop:Generator_UserColumnName="TGL" type="xs:string" minOccurs="0" />
-              <xs:element name="EMP_NM" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="EMP_NM" msprop:Generator_ColumnVarNameInTable="columnEMP_NM" msprop:Generator_ColumnPropNameInTable="EMP_NMColumn" msprop:Generator_UserColumnName="EMP_NM" type="xs:string" minOccurs="0" />
-              <xs:element name="TO_AMT" msprop:Generator_ColumnVarNameInTable="columnTO_AMT" msprop:Generator_ColumnPropNameInRow="TO_AMT" msprop:Generator_ColumnPropNameInTable="TO_AMTColumn" msprop:Generator_UserColumnName="TO_AMT" type="xs:decimal" minOccurs="0" />
-              <xs:element name="PAKET" msprop:Generator_ColumnVarNameInTable="columnPAKET" msprop:Generator_ColumnPropNameInRow="PAKET" msprop:Generator_ColumnPropNameInTable="PAKETColumn" msprop:Generator_UserColumnName="PAKET" type="xs:decimal" minOccurs="0" />
-              <xs:element name="GIFT" msprop:Generator_ColumnVarNameInTable="columnGIFT" msprop:Generator_ColumnPropNameInRow="GIFT" msprop:Generator_ColumnPropNameInTable="GIFTColumn" msprop:Generator_UserColumnName="GIFT" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TOTAL" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
-              <xs:element name="KOMISI" msprop:Generator_ColumnVarNameInTable="columnKOMISI" msprop:Generator_ColumnPropNameInRow="KOMISI" msprop:Generator_ColumnPropNameInTable="KOMISIColumn" msprop:Generator_UserColumnName="KOMISI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GROUP_NM" msprop:Generator_ColumnVarNameInTable="columnGROUP_NM" msprop:Generator_ColumnPropNameInRow="GROUP_NM" msprop:Generator_ColumnPropNameInTable="GROUP_NMColumn" msprop:Generator_UserColumnName="GROUP_NM" type="xs:string" minOccurs="0" />
               <xs:element name="TYPE_NM" msprop:Generator_ColumnVarNameInTable="columnTYPE_NM" msprop:Generator_ColumnPropNameInRow="TYPE_NM" msprop:Generator_ColumnPropNameInTable="TYPE_NMColumn" msprop:Generator_UserColumnName="TYPE_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="ITEM_CD" msprop:Generator_ColumnVarNameInTable="columnITEM_CD" msprop:Generator_ColumnPropNameInRow="ITEM_CD" msprop:Generator_ColumnPropNameInTable="ITEM_CDColumn" msprop:Generator_UserColumnName="ITEM_CD" type="xs:string" minOccurs="0" />
+              <xs:element name="CUSTOMER" msprop:Generator_ColumnVarNameInTable="columnCUSTOMER" msprop:Generator_ColumnPropNameInRow="CUSTOMER" msprop:Generator_ColumnPropNameInTable="CUSTOMERColumn" msprop:Generator_UserColumnName="CUSTOMER" type="xs:string" minOccurs="0" />
+              <xs:element name="TYPE" msprop:Generator_ColumnVarNameInTable="columnTYPE" msprop:Generator_ColumnPropNameInRow="TYPE" msprop:Generator_ColumnPropNameInTable="TYPEColumn" msprop:Generator_UserColumnName="TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="GRP_CD" msprop:Generator_ColumnVarNameInTable="columnGRP_CD" msprop:Generator_ColumnPropNameInRow="GRP_CD" msprop:Generator_ColumnPropNameInTable="GRP_CDColumn" msprop:Generator_UserColumnName="GRP_CD" type="xs:string" minOccurs="0" />
+              <xs:element name="UNIT_NM" msprop:Generator_ColumnVarNameInTable="columnUNIT_NM" msprop:Generator_ColumnPropNameInRow="UNIT_NM" msprop:Generator_ColumnPropNameInTable="UNIT_NMColumn" msprop:Generator_UserColumnName="UNIT_NM" type="xs:string" minOccurs="0" />
+              <xs:element name="Stock" msprop:Generator_ColumnVarNameInTable="columnStock" msprop:Generator_ColumnPropNameInRow="Stock" msprop:Generator_ColumnPropNameInTable="StockColumn" msprop:Generator_UserColumnName="Stock" type="xs:string" minOccurs="0" />
+              <xs:element name="HARGA" msprop:Generator_ColumnVarNameInTable="columnHARGA" msprop:Generator_ColumnPropNameInRow="HARGA" msprop:Generator_ColumnPropNameInTable="HARGAColumn" msprop:Generator_UserColumnName="HARGA" type="xs:string" minOccurs="0" />
+              <xs:element name="ITEM_NM" msprop:Generator_ColumnVarNameInTable="columnITEM_NM" msprop:Generator_ColumnPropNameInRow="ITEM_NM" msprop:Generator_ColumnPropNameInTable="ITEM_NMColumn" msprop:Generator_UserColumnName="ITEM_NM" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

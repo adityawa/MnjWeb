@@ -7,24 +7,18 @@
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/css/select2.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
-<link href="~/Content/Datatables_Align_Center.css" rel="stylesheet" />
 
 <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
-<script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
-<script src="~/Scripts/DataTables/dataTables.fixedHeader.js"></script>
-<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
-<script src="~/Scripts/DataTables/buttons.flash.js"></script>
-<script src="~/Scripts/jszip.js"></script>
-<script src="~/Scripts/DataTables/buttons.html5.js"></script>
-<script src="~/Scripts/DataTables/buttons.print.js"></script>
-<script src="~/Scripts/DataTables/buttons.colVis.js"></script>
 <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
 <script src="~/Scripts/select2.js"></script>
-
-
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
 
 <div class="page-title">
     <h1>Input Item (Threatment & Product) Master</h1>
@@ -41,38 +35,36 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail2">Item Code</label>
-                        <select class="form-control" id="selItem" name="selItem" required>
-                        </select>
+                        <select class="form-control" id="selItem" name="selItem" required></select>
 
                         <label class="control-label " for="exampleInputEmail2">Type</label>
-                        <select class="form-control" id="" seltypename="selType" required>
+                        <select class="form-control" id="selType" name="selType">
                             <option value="all">ALL</option>
-                            <option value="treatment">Treatment</option>
-                            <option value="product">Product</option>
+                            <option value="1">Treatment</option>
+                            <option value="2">Product</option>
                         </select>
 
                         <label for="exampleInputEmail2">Customer</label>
-                        <select class="form-control" id="selCustomer" name="selCustomer" required></select>
+                        <select class="form-control" id="selCustomer" name="selCustomer"></select>
 
-                        <label class="control-label" for="exampleInputEmail2">Action</label>
+                        @*<label class="control-label" for="exampleInputEmail2">Action</label>
 
-                        <select class="form-control" id="selÀction" name="selÀction" required>
-                            <option value="PREVIEW">Preview</option>
-                            <option value="PRINT">Print</option>
-                        </select>
-                      
-
+                            <select class="form-control" id="selÀction" name="selÀction">
+                                <option value="PREVIEW">Preview</option>
+                                <option value="PRINT">Print</option>
+                            </select>*@
                         <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                        <button type="button" id="btnNew" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> New </button>
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="card" id="grid">
-            <div class="row">
+            <div class="row" id="preview">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <table class="table table-hover table-bordered" id="gridResult">
+                        <table class="table table-hover table-bordered" width="100%" id="gridResult">
                             <thead>
                                 <tr>
                                     <th>Item Code</th>
@@ -83,22 +75,76 @@
                                     <th>Unit Price</th>
                                     <th>UoM</th>
                                     <th>Stock</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
                     </div>
                 </div>
-               @* <iframe name="rpt" width="100%" height="500" id="rpt"></iframe>*@
+
+            </div>
+            @*<iframe name="rpt" width="100%" height="500" id="rpt"></iframe>*@
+        </div>
+
+
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="mdlAdd" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel">Add New Item & Product</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" style="margin-bottom:5px; padding-bottom:5px">
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbItemCd" class="col-sm-2 control-label">Item Code</label>
+                        <input type="text" class="form-control col-md-8" id="tbItemCd" readonly>
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbCustomer" class="col-md-2 control-label">Customer</label>
+                        <select class="form-control" id="selCustomerAdd" name="selCustomerAdd" style="width:25%"></select>
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbType" class="col-md-2 control-label">Type</label>
+                        <select class="form-control" id="selTypeAdd" name="selTypeAdd">
+                            <option value="1">Treatment</option>
+                            <option value="2">Product</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbGroup" class="col-md-2 control-label">Group</label>
+                        <select class="form-control" id="selGroupAdd" name="selGroupAdd" style="width:25%"></select>
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbItemName" class="col-md-2 control-label">Item Name</label>
+                        <input type="text" class="form-control col-md-8" id="tbItemNm">
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbUnitPrice" class="col-md-2 control-label">Unit Price</label>
+                        <input type="number" class="form-control col-md-8" id="tbUnitPrice">
+                    </div>
+                    <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                        <label for="lbUom" class="col-md-2 control-label">Uom</label>
+                        <select class="form-control" id="selUomAdd" name="selUomAdd" style="width:25%"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSave" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 
-
 <script type="text/javascript">
     var data_group = [];
+    var data_uom = [];
     var data_item = [];
     var data_cust = [];
     var arr_result = [];
@@ -107,15 +153,50 @@
         GetItemGroup();
         GetItem();
         GetCustomer();
+        GetUom();
         $('#selType').select2();
+        $('#grid').hide();
+        var _rpt = $('#rpt');
 
         $("#btnViewReport").click(function (e) {
+
+            var selected_action = $('#selÀction').val();
             var item_grp = $('#selGroup').val();
             var item_cd = $('#selItem').val();
             var type = $('#selType').val();
             var cust = $('#selCustomer').val();
 
+            //if (selected_action == "PREVIEW") {
+            //    _rpt.hide();
+            $('#grid').show();
             Inquiry(item_grp, item_cd, type, cust);
+            //}
+            //else {
+            //    $('#preview').hide();
+            //    $('#grid').show();
+            //    document.getElementById("rpt").src = "/Reporting/ItemMasterProductPage.aspx?param=" + item_grp + "|" + item_cd + "|" + type + "|" + cust;
+            //    _rpt.show();
+            //}
+
+        });
+
+        $('#btnNew').click(function (e) {
+
+            $('#mdlAdd').modal({
+                backdrop: 'static'
+            });
+        });
+
+        $('#btnSave').click(function (e) {
+            var _itemCd = $('#tbItemCd').val();
+            var _itemNm = $('#tbItemNm').val();
+            var _harga = $('#tbUnitPrice').val();
+            var _type = $('#selTypeAdd').val();
+            var _group = $('#selGroupAdd').val();
+            var _cust = $('#selCustomerAdd').val();
+            var _uom = $('#selUomAdd').val();
+
+           AddNew(_itemCd, _itemNm, _harga, _type, _group, _type, _cust, _uom);
         });
     });
 
@@ -129,6 +210,14 @@
 
                 $('#selGroup').select2({
                     data: data_group
+                });
+
+                var new_datagroup = $.grep(data_group, function (e) {
+                    return e.id != '0';
+                });
+                $('#selGroupAdd').select2({
+                    
+                    data: new_datagroup
                 });
 
             },
@@ -164,7 +253,6 @@
                 console.log(err);
             }
 
-
         });
 
     }
@@ -179,6 +267,38 @@
 
                 $('#selCustomer').select2({
                     data: data_cust
+                });
+
+                var new_data_cust = $.grep(data_cust, function (e) {
+                    return e.id != '0';
+                });
+
+                $('#selCustomerAdd').select2({
+                    data: new_data_cust
+                });
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+
+    }
+
+    function GetUom() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetUom")',
+
+            success: function (response) {
+                data_uom = response.Data;
+
+                $('#selUomAdd').select2({
+                    data: data_uom
                 });
 
             },
@@ -204,36 +324,38 @@
             success: function (response) {
                 //if (response.Status == "success") {
                 //    $('#mdlProgress').modal('hide');
-                    arr_result = response.Data;
-                    tbl_inquiry = $('#gridResult').DataTable({
-                        data: arr_result,
-                        destroy: true,
-                        columns: [
-                            { data: "ITEM_CD" },
-                            { data: "TYPE_NM" },
-                            { data: "GROUP_NM" },
-                            { data: "CUSTOMER" },
-                            { data: "ITEM_NM" },
-                            { data: "HARGA" },
-                            { data: "UNIT_NM" },
-                            { data: "STOCK" }
-                         
-                        ],
-                        processing: true,
+                arr_result = response.Data;
+                tbl_inquiry = $('#gridResult').DataTable({
+                    data: arr_result,
+                    destroy: true,
+                    columns: [
+                        { data: "ITEM_CD" },
+                        { data: "TYPE_NM" },
+                        { data: "GROUP_NM" },
+                        { data: "CUSTOMER" },
+                        { data: "ITEM_NM" },
+                        { data: "HARGA" },
+                        { data: "UNIT_NM" },
+                        { data: "STOCK" },
+                        {
+                            "data": null,
+                            "targets": -1,
+                            "render": function (data, type, full) {
+                                return "<a  onclick='Edit(" + full['ITEM_CD'] + ")' id='btnEdit" + full['ITEM_CD'] + "' class='btn btn-success btn-xs'><i class='fa fa-edit'></i></a>" +
+                                  " <button onclick='Delete(" + full['ID'] + ")' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></button>";
+                            },
+                            "bSearchable": true,
+                            "sortable": false
+                          
+                        }
 
-                    });
-
-
-                //}
-                //else {
-                //    $('#mdlProgress').modal('hide');
-                //    //$("label[for = lblMsgHdr]").text("An Error Occured..");
-                //    //$("label[for = lblMsgDet]").text(result.ErrMsg);
-                //    // $('#mdlNotif').modal('show');
-
-
-                //}
-
+                    ],
+                    processing: true,
+                    dom: 'Bfrtip',
+                    buttons: [
+                            'print', 'excel'
+                    ]
+                });
 
             },
             error: function (xhr, status, p3, p4) {
@@ -246,4 +368,24 @@
 
         });
     }
+
+    function AddNew(ItemCd, ItemNm, price, Cust, Group, type, uom) {
+        $.ajax({
+            type: "Post",
+            url: '@Url.Content("/ItemMasterTreatment/Add")',
+            data: { itemGrp: Group, itemCd: ItemCd, Type: type, Customer: Cust, itemNm: ItemNm, Harga: price, Uom:uom },
+            success: function (result) {
+                if (result == 'success') {
+                    alert(result.Status);
+                    $('#mdlAdd').modal('hide');
+                    location.reload();
+                }
+                else {
+                    alert(result.Status);
+                }
+              
+            }
+        })
+    }
+
 </script>

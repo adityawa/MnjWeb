@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Oracle.ManagedDataAccess.Client;
 using Dapper;
+using MNJvWeb.Models.EntityModel;
 namespace MNJvWeb.Models.Master
 {
     public class InputMasterItemTreatmentModel
@@ -37,18 +38,37 @@ namespace MNJvWeb.Models.Master
         + " NVL(a.harga,0) harga,"
         + " b.item_nm unit_nm,"
         + " a.stock"
-+ " FROM     SPA02MT a, SPA01MT b, SPA01MT C, SPA01MT D"
-+ " WHERE    a.unit_qty = b.item_cd(+)"
+        + " FROM     SPA02MT a, SPA01MT b, SPA01MT C, SPA01MT D"
+         + " WHERE    a.unit_qty = b.item_cd(+)"
          + " AND b.grp_cd(+) = 'UNIT QUANTITY'"
          + "  AND a.group_cd = c.item_cd(+)"
          + " AND c.grp_cd(+) = 'GROUP ITEM'"
          + " AND a.VISIT_GRP = d.item_cd(+)"
          + " AND d.grp_cd(+) = 'ITEM GROUP BY CUSTOMER GROUP'";
 
+            if (_itemCd != "0")
+                sSql += " AND a.item_cd=" + _itemCd;
+            if (_type != "" && _type.ToLower() != "all")
+                sSql += " AND a.type_cd=" + _type;
+            if (_custGroup != "0" && _custGroup.ToLower() != "all")
+                sSql += " AND d.item_cd=" + _custGroup;
+            if (_itemGroup != "0" && _itemGroup != "all")
+                sSql += " AND c.item_cd=" + _itemGroup;
 
             DBManager db = new DBManager();
             ls = db.GetDataByDapper<InputMasterItemTreatmentInqModel>(sSql);
             return ls;
+        }
+
+        public int InsertData(string _itemCd, string _itemNm, string _harga, string _uom, string _grpCd, string _custCd, string _typeCd)
+        {
+            int result = 0;
+            string sSql = string.Format( "INSERT INTO SPA02MT (ITEM_CD, ITEM_NM, HARGA, USED, UNIT_QTY, GROUP_CD, VISIT_GRP, TYPE_CD) "
+                + " VALUES ('{0}', '{1}', {2}, 'Y', '{3}', '{4}', '{5}', '{6}')",new DBHelper().GetAutoNo("spa02mt", "ITEM_CD"), _itemNm,Convert.ToInt32(_harga), "Y", _uom, _grpCd, _custCd, _typeCd);
+          
+            DBManager db = new DBManager();
+            result = db.Add(sSql);
+            return result;
         }
     }
 }

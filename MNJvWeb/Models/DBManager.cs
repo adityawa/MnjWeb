@@ -36,30 +36,48 @@ namespace MNJvWeb.Models
 
             using (var con = oraCon)
             {
-               list = con.Query<T>(sSql).ToList();
-                
-                //foreach (var item in qry)
-                //{
-                //    T obj = new T();
-                    
-                //    foreach (var prop in obj.GetType().GetProperties())
-                //    {
-                //        try
-                //        {
-                //            PropertyInfo propertyInfo = obj.GetType().GetProperty(prop.Name);
-                //            propertyInfo.SetValue(obj, Convert.ChangeType(item, item.GetType()), null);
-                //        }
-                //        catch(Exception ex)
-                //        {
-                //            continue;
-                //        }
-                //    }
+                list = con.Query<T>(sSql).ToList();
 
-                //    list.Add(obj);
-                //}
+
             }
 
             return list;
+        }
+
+        public int Add<T>(string sSql, T obj) where T : class, new()
+        {
+            int returnAffected = 0;
+            try
+            {
+                using (var con = oraCon)
+                {
+                    returnAffected = con.Execute(sSql, obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return returnAffected;
+        }
+
+        public int Add(string sSql) 
+        {
+            int returnAffected = 0;
+            try
+            {
+                using (var con = oraCon)
+                {
+                    returnAffected = con.Execute(sSql);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return returnAffected;
         }
 
         public DataTable GetData(string sSql, out string errorMsg)
