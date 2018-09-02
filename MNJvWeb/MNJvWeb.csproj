@@ -469,6 +469,8 @@
     <Content Include="Content\img\avatar2.png" />
     <Content Include="Content\img\eTax2.jpg" />
     <Content Include="Content\img\eTax3.jpg" />
+    <Content Include="Content\img\Spinner2.gif" />
+    <Content Include="Content\img\SpinnerLoader.gif" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\style.css" />

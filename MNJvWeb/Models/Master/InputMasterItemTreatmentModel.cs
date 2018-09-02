@@ -64,10 +64,40 @@ namespace MNJvWeb.Models.Master
         {
             int result = 0;
             string sSql = string.Format( "INSERT INTO SPA02MT (ITEM_CD, ITEM_NM, HARGA, USED, UNIT_QTY, GROUP_CD, VISIT_GRP, TYPE_CD) "
-                + " VALUES ('{0}', '{1}', {2}, 'Y', '{3}', '{4}', '{5}', '{6}')",new DBHelper().GetAutoNo("spa02mt", "ITEM_CD"), _itemNm,Convert.ToInt32(_harga), "Y", _uom, _grpCd, _custCd, _typeCd);
+                + " VALUES ('{0}', '{1}', {2}, '{3}', '{4}', '{5}', '{6}', {7})",new DBHelper().GetAutoNo("spa02mt", "ITEM_CD"), 
+                _itemNm,
+                Convert.ToInt32(_harga), "Y", _uom, _grpCd, _custCd, _typeCd);
           
             DBManager db = new DBManager();
             result = db.Add(sSql);
+            return result;
+        }
+
+        public int UpdateData(string _itemCd, string _itemNm, string _harga, string _uom, string _grpCd, string _custCd, string _typeCd)
+        {
+            int result = 0;
+            string sSql = string.Format( "UPDATE SPA02MT SET ITEM_NM = '{0}', HARGA={1}, UNIT_QTY={2}, GROUP_CD={3}, VISIT_GRP='{4}', TYPE_CD={5} WHERE ITEM_CD='{6}'", _itemNm, _harga, _uom, _grpCd, _custCd, _typeCd, _itemCd);
+
+            DBManager db = new DBManager();
+            result = db.Update(sSql);
+            return result;
+        }
+
+        public SPA02MTModel FindById(string _itemCd)
+        {
+            SPA02MTModel model = new SPA02MTModel();
+            string sSql = "select * from SPA02MT where ITEM_CD='"+_itemCd+"'";
+            DBManager db = new DBManager();
+            model = db.FindByID<SPA02MTModel>(sSql);
+            return model;
+        }
+
+        public int DeleteData(string _item_cd)
+        {
+            int result = 0;
+            string sSql = "Delete from SPA02MT where ITEM_CD='"+_item_cd+"'";
+            DBManager db = new DBManager();
+            result = db.Delete(sSql);
             return result;
         }
     }

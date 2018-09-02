@@ -14,7 +14,19 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
   
     <script src="~/Scripts/main.js"></script>
-   
+   <style>
+       .dvLoading {
+           position: fixed;
+           left: 0px;
+           top: 0px;
+           width: 100%;
+           height: 100%;
+           z-index: 9999;
+          
+           background: url('/Content/img/Spinner2.gif') 50% 50% no-repeat rgb(249,249,249);
+       }
+      
+   </style>
     <title>::mom n jo::</title>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--if lt IE 9
@@ -137,7 +149,20 @@
 	</div>
 	</div>
 	</div>
+    @*<div class="modal fade" id="mdlLoadingScreen" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
 
+                    <h4 class="modal-title text-center">Please Wait...</h4>
+                </div>
+                <div class="modal-body " style="text-align:center">
+                    <img src="~/Content/img/Spinner2.gif" />
+                </div>
+
+            </div>
+        </div>
+    </div>*@
 	@RenderBody()
 	@RenderSection("scripts", required: false)
 

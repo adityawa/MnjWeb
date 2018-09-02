@@ -30,6 +30,24 @@ namespace MNJvWeb.Models
 
         }
 
+        public T FindByID<T>(string _sql) where T : class, new()
+        {
+            T obj = new T();
+            using (var con = oraCon)
+            {
+                try
+                {
+                    obj = con.QueryFirstOrDefault<T>(_sql);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+               
+            }
+            return obj;
+        }
+
         public List<T> GetDataByDapper<T>(string sSql) where T : class,new()
         {
             List<T> list = new List<T>();
@@ -37,21 +55,19 @@ namespace MNJvWeb.Models
             using (var con = oraCon)
             {
                 list = con.Query<T>(sSql).ToList();
-
-
             }
 
             return list;
         }
 
-        public int Add<T>(string sSql, T obj) where T : class, new()
+        public int Update(string sSql)
         {
             int returnAffected = 0;
             try
             {
                 using (var con = oraCon)
                 {
-                    returnAffected = con.Execute(sSql, obj);
+                    returnAffected = con.Execute(sSql);
                 }
             }
             catch (Exception ex)
@@ -63,6 +79,24 @@ namespace MNJvWeb.Models
         }
 
         public int Add(string sSql) 
+        {
+            int returnAffected = 0;
+            try
+            {
+                using (var con = oraCon)
+                {
+                    returnAffected = con.Execute(sSql);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return returnAffected;
+        }
+
+        public int Delete(string sSql)
         {
             int returnAffected = 0;
             try

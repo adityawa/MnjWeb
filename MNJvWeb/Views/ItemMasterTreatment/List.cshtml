@@ -141,6 +141,28 @@
     </div>
 </div>
 
+<div class="modal fade" id="mdlRemove" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are You sure to delete this Item Code </p>
+                <label for="item_cd_del"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnRemove" class="btn btn-primary">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="loadScreen" style="display:none" class="dvLoading">
+
+</div>
 
 <script type="text/javascript">
     var data_group = [];
@@ -150,13 +172,15 @@
     var arr_result = [];
     var tbl_inquiry;
     $(document).ready(function () {
+      
+        
         GetItemGroup();
         GetItem();
         GetCustomer();
         GetUom();
         $('#selType').select2();
         $('#grid').hide();
-        var _rpt = $('#rpt');
+        
 
         $("#btnViewReport").click(function (e) {
 
@@ -187,6 +211,11 @@
             });
         });
 
+        $('#btnRemove').click(function (e) {
+            var _delID = $("label[for = item_cd_del]").text();
+            DeleteItem(_delID);
+        });
+
         $('#btnSave').click(function (e) {
             var _itemCd = $('#tbItemCd').val();
             var _itemNm = $('#tbItemNm').val();
@@ -196,11 +225,14 @@
             var _cust = $('#selCustomerAdd').val();
             var _uom = $('#selUomAdd').val();
 
-           AddNew(_itemCd, _itemNm, _harga, _type, _group, _type, _cust, _uom);
+            AddNew(_itemCd, _itemNm, _harga, _type, _group, _cust, _uom);
         });
+
+      
     });
 
     function GetItemGroup() {
+        $('#loadScreen').show();
         $.ajax({
             type: 'GET',
             url: '@Url.Content("/AjaxData/GetItemGroup")',
@@ -216,7 +248,7 @@
                     return e.id != '0';
                 });
                 $('#selGroupAdd').select2({
-                    
+
                     data: new_datagroup
                 });
 
@@ -276,6 +308,8 @@
                 $('#selCustomerAdd').select2({
                     data: new_data_cust
                 });
+
+                $('#loadScreen').hide();
             },
             error: function (xhr, status, p3, p4) {
                 var err = "Error " + " " + status + " " + p3 + " " + p4;
@@ -300,7 +334,7 @@
                 $('#selUomAdd').select2({
                     data: data_uom
                 });
-
+                
             },
             error: function (xhr, status, p3, p4) {
                 var err = "Error " + " " + status + " " + p3 + " " + p4;
@@ -341,12 +375,12 @@
                             "data": null,
                             "targets": -1,
                             "render": function (data, type, full) {
-                                return "<a  onclick='Edit(" + full['ITEM_CD'] + ")' id='btnEdit" + full['ITEM_CD'] + "' class='btn btn-success btn-xs'><i class='fa fa-edit'></i></a>" +
-                                  " <button onclick='Delete(" + full['ID'] + ")' class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></button>";
+                                return "<a  onclick='Edit(" + full['ITEM_CD'] + ")' id='btnEdit" + full['ITEM_CD'] + "'><i class='fa fa-edit'></i></a>" +
+                                  " | <button onclick='Delete(" + full['ITEM_CD'] + ")' ><i class='fa fa-trash'></i></button>";
                             },
                             "bSearchable": true,
                             "sortable": false
-                          
+
                         }
 
                     ],
@@ -369,11 +403,12 @@
         });
     }
 
-    function AddNew(ItemCd, ItemNm, price, Cust, Group, type, uom) {
+    function AddNew(ItemCd, ItemNm, price, type, Group, Cust, uom) {
+
         $.ajax({
             type: "Post",
             url: '@Url.Content("/ItemMasterTreatment/Add")',
-            data: { itemGrp: Group, itemCd: ItemCd, Type: type, Customer: Cust, itemNm: ItemNm, Harga: price, Uom:uom },
+            data: { itemGrp: Group, itemCd: ItemCd, Type: type, Customer: Cust, itemNm: ItemNm, Harga: price, Uom: uom },
             success: function (result) {
                 if (result == 'success') {
                     alert(result.Status);
@@ -383,9 +418,62 @@
                 else {
                     alert(result.Status);
                 }
-              
+
             }
-        })
+        });
     }
 
+    function DeleteItem(Id) {
+        $.ajax({
+            url: '/ItemMasterTreatment/DeleteItem?id=' + Id,
+            method: 'GET',
+            success: function (result) {
+                alert(result.Status);
+            },
+            error: function (xml, message, text) {
+                toastr.error("Msg: " + message + ", Text: " + text);
+            }
+        });
+    }
+
+    var Edit = function (ID) {
+        $.ajax({
+            url: '/ItemMasterTreatment/GetItemById?id=' + ID,
+            method: 'GET',
+            success: function (result) {
+                if (result.Status == "success") {
+                    $('#tbItemCd').val(result.Item_CD);
+                    $('#tbItemCd').disabled;
+                    $('#tbItemNm').val(result.Item_NM);
+                    $('#selTypeAdd').val(result.Type_CD);
+                    $('#selGroupAdd').val(result.Group).trigger('change');
+                    $('#selUomAdd').val(result.Uom).trigger('change');
+                    $('#selCustomerAdd').val(result.Customer).trigger('change');
+                    $('#tbUnitPrice').val(result.Harga);
+                    $("#mdlAdd").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    }, 'show');
+                }
+            },
+            error: function (xml, message, text) {
+                toastr.error("Msg: " + message + ", Text: " + text);
+            }
+        });
+
+
+
+        return false;
+    }
+
+    var Delete = function (ID) {
+
+        $("label[for = item_cd_del]").text(ID);
+        $("#mdlRemove").modal({
+            backdrop: 'static',
+            keyboard: false
+        }, 'show');
+
+        return false;
+    }
 </script>
