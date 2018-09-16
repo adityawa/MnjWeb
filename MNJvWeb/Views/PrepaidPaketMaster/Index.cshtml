@@ -483,6 +483,7 @@
     }
     var Edit = function (PrepaidCd) {
         $('#notifSuccess').hide();
+
         $('#notifErr').hide();
         $.ajax({
             url: '/PrepaidPaketMaster/GetDetailPrepaidPacket?parm=' + PrepaidCd,
