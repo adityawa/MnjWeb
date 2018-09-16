@@ -174,11 +174,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AjaxDataController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\ItemMasterTreatmentController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\PrepaidPaketMasterController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="DSReport.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -266,6 +268,8 @@
     <Compile Include="Models\EntityModel\select2BaseModel.cs" />
     <Compile Include="Models\EntityModel\SPA02MTModel.cs" />
     <Compile Include="Models\EntityModel\SPA05MTModel.cs" />
+    <Compile Include="Models\EntityModel\SPA16ITModel.cs" />
+    <Compile Include="Models\EntityModel\SPA17ITModel.cs" />
     <Compile Include="Models\EntityModel\SPTA01MTModel.cs" />
     <Compile Include="Models\EntityModel\SPTA03MTModel.cs" />
     <Compile Include="Models\EntityModel\TransactionParam.cs" />
@@ -761,10 +765,12 @@
     <Content Include="Views\Inventory\ListStock.cshtml" />
     <Content Include="Views\Inventory\ListAdjustment.cshtml" />
     <Content Include="Views\ItemMasterTreatment\List.cshtml" />
+    <Content Include="Views\PrepaidPaketMaster\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AjaxData\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal-lg" id="mdlAdd" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="mdlAdd"  role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -259,8 +259,6 @@
                     err = JSON.parse(xhr.responseText).Message;
                 console.log(err);
             }
-
-
         });
 
     }
@@ -304,7 +302,7 @@
                 var new_data_cust = $.grep(data_cust, function (e) {
                     return e.id != '0';
                 });
-
+                  
                  
                 $('#selCustomerAdd').select2({
                     data: new_data_cust
@@ -461,9 +459,6 @@
                 toastr.error("Msg: " + message + ", Text: " + text);
             }
         });
-
-
-
         return false;
     }
 

@@ -43,7 +43,7 @@ namespace MNJvWeb.Models
                 {
                     throw new Exception(ex.Message);
                 }
-               
+
             }
             return obj;
         }
@@ -78,7 +78,7 @@ namespace MNJvWeb.Models
             return returnAffected;
         }
 
-        public int Add(string sSql) 
+        public int Add(string sSql)
         {
             int returnAffected = 0;
             try
@@ -140,6 +140,33 @@ namespace MNJvWeb.Models
             return dtResult;
         }
 
+        public int AddOrUpdateWithTRansaction(List<string> arr_sSql, out string err)
+        {
+            err = "success";
+            int result_affected = 0;
+            if (oraCon.State == ConnectionState.Closed)
+                oraCon.Open();
+            OracleCommand cmd = oraCon.CreateCommand();
+            OracleTransaction tran;
+            tran = oraCon.BeginTransaction(IsolationLevel.ReadCommitted);
+            try
+            {
+                cmd.Transaction = tran;
+                for (int i = 0; i < arr_sSql.Count; i++)
+                {
+                  cmd.CommandText = arr_sSql[i];
+                  result_affected+=  cmd.ExecuteNonQuery();
+                }
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                err = ex.Message;
+            }
+
+            return result_affected;
+        }
 
     }
 }

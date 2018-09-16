@@ -1,0 +1,554 @@
+﻿@model MNJvWeb.Models.EntityModel.SPA17ITModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<style>
+    table.dataTable tbody tr.selected {
+        background-color: #B0BED9;
+    }
+</style>
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+
+<div class="page-title">
+    <h1>Prepaid Paket Master</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card2">
+            <div class="bs-component">
+                <form id="frm1" class=" form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Prepaid No</label>
+                        <select class="form-control" id="selPrepaid" name="selPrepaid"></select>
+                    </div>
+                    <button type="button" id="btnViewReport" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search </button>
+                    <button type="button" id="btnNew" class="btn-primary"><i class="fa fa-search" aria-hidden="true"></i> New </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card" id="grid">
+            <div class="row" id="preview">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered" width="100%" id="gridResult">
+                            <thead>
+                                <tr>
+                                    <th>Prepaid No</th>
+                                    <th>Prepaid Package Name</th>
+                                    <th>Prepaid Price</th>
+                                    <th>Treatment Code</th>
+                                    <th>Treatment Name</th>
+                                    <th>Qty</th>
+                                    <th>Input Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            @*<iframe name="rpt" width="100%" height="500" id="rpt"></iframe>*@
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="mdlAdd"  role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+       
+        <div class="modal-content">
+            <div id="notifSuccess" class="alert alert-success" style="display:none" role="alert">
+                <strong>Success!</strong> Your Data saved successfull.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="notifErr" class="alert alert-danger" style="display:none" role="alert">
+                <strong>Error!</strong> <label for="lblErr"></label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add New Prepaid Paket Master</h4>
+            </div>
+            <div style="font-size:small">
+                <div class="col-lg-6" style="margin-top:20px">
+                    <form class="form-horizontal" style=" margin-bottom:5px; padding-bottom:5px">
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbItemCd" class="col-sm-4 control-label">Prepaid No</label>
+                            <input type="text" class="form-control col-md-5" id="tbPrepaidNo" readonly>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbCustomer" class="col-md-4 control-label">Prepaid Name</label>
+                            <input type="text" class="form-control col-md-5" id="tbPrepaidName">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbType" class="col-md-4 control-label">Price</label>
+                            <input type="text" class="form-control col-md-5" id="tbPrice" value="0">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6" style="margin-top:20px">
+                    <form class="form-horizontal" style="margin-bottom:5px; padding-bottom:5px">
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <input type="text" id="txt_row_id" style="display:none" />
+                            <label for="lbItemCd" class="col-sm-3 control-label">Item Name</label>
+                            <select class="form-control col-md-5" id="selItem" style="width:50%" name="selItem"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbCustomer" class="col-md-3 control-label">Qty</label>
+                            <input type="text" class="form-control col-md-5" id="tbQty">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <button type="button" id="btnDown" class="btn btn-xs"><i class="fa fa-arrow-down"></i></button>
+                            <button type="button" id="btnUp" class="btn btn-xs"><i class="fa fa-arrow-up"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <table class="table table-hover table-bordered" width="100%" id="tblDetail">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Treatment Code</th>
+                        <th>Treatment Name</th>
+                        <th>Qty</th>
+                       
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlRemove" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="notifSuccess_del" class="alert alert-success" style="display:none" role="alert">
+                <strong>Success!</strong> Your Data Removed successfull.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="notifErr_del" class="alert alert-danger" style="display:none" role="alert">
+                <strong>Error!</strong> <label for="lblErr_del"></label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are You sure to delete this Prepaid No <label for="prepaid_no_del"></label> With Item Code <label for="item_cd_del"/></p>
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnRemove" class="btn btn-primary">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var arr_prepaid = [];
+    var arr_item = [];
+    var arr_inquiry = [];
+    var arr_detail = [];
+    var tbl_inquiry;
+    var tbl_detil;
+    var selected_det = '';
+    var cumm_price = '0';
+    $(function () {
+        GetPrepaidNo();
+        GetItem();
+        $('#btnViewReport').click(function (e) {
+            var _param = $('#selPrepaid').val();
+            Inquiry(_param);
+        });
+
+        $('#btnSave').click(function (e) {
+           
+            if (window.FormData != undefined) {
+                var form_data = new FormData();
+                form_data.append("PrepaidCD", $('#tbPrepaidNo').val())
+                form_data.append("PrepaidName", $('#tbPrepaidName').val());
+                form_data.append("Price", $('#tbPrice').val());
+                form_data.append("Detail", JSON.stringify(arr_detail));
+                $.ajax({
+                    type: 'POST',
+                    url: '/PrepaidPaketMaster/AddPrepaidPaket',
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    async: "true",
+                    success: function (result) {
+                        if (result.Status == "success") {
+                            $('#notifSuccess').show();
+
+                        }
+                        else {
+                            $("label[for = lblErr]").text(result.Status);
+                            $('#notifErr').show();
+                        }
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                    }
+                });
+            }
+            else {
+                alert('Your browser not supported with form data');
+            }
+        });
+
+        $('#btnRemove').click(function (e) {
+            var _prepaidNo = $("label[for = prepaid_no_del]").text();
+            var _itemCd = $("label[for = item_cd_del]").text();
+            DeleteItem(_prepaidNo, _itemCd) ;
+        });
+        $('#btnNew').click(function (e) {
+            $('#notifSuccess').hide();
+            $('#notifErr').hide();
+
+            $('#mdlAdd').modal({
+                backdrop: 'static'
+            });
+        });
+        $('#btnUp').click(function (e) {
+            if (selected_det != null && selected_det != '') {
+                var arr_temp = selected_det.split(';');
+                $('#selItem').val(arr_temp[1]).trigger('change');
+                $('#tbQty').val(arr_temp[2]);
+                $('#txt_row_id').val(arr_temp[0]);
+            }
+        });
+        $('#btnDown').click(function (e) {
+
+            if (arr_detail.length > 0) {
+                var exist_rowNo = $('#txt_row_id').val();
+                if (exist_rowNo != null && exist_rowNo != '') {
+                    //var idx = arr_detail.map(function (x) { return x.row_no }).indexOf(exist_rowNo);
+                    var idx = $.map(arr_detail, function (obj, index) {
+                        if (obj.row_no == exist_rowNo) {
+                            return index;
+                        }
+                    });
+                    arr_detail.splice(idx, 1);
+                }
+               
+            }
+
+            if (arr_detail.length > 0) {
+                //cek is item exist
+                var temp_data = $('#selItem').select2('data');
+                console.log(temp_data[0].id)
+                var exist_item = $.grep(arr_detail, function (e) {
+                    return e.ITEM_CD == temp_data[0].id;
+                });
+                if (exist_item.length > 0) {
+                    alert('Item was exist. You cannot Add this item!')
+                    return false;
+                }
+            }
+
+            var objDetil = new Object();
+            if ($('#txt_row_id').val() == '') {
+                objDetil.row_no = arr_detail.length + 1;
+            }
+            else {
+                objDetil.row_no = $('#txt_row_id').val();
+            }
+            
+            var _selQty=$('#tbQty').val();
+            if (_selQty == '' || _selQty == null) {
+                alert('Qty must be specified first!');
+                return false;
+            }
+
+            var data = $('#selItem').select2('data');
+            objDetil.ITEM_CD = data[0].id;
+            objDetil.ITEM_NM = data[0].text.split('-')[0];
+            objDetil.UP_PRC = data[0].text.split('-')[1];
+            objDetil.QTY = $('#tbQty').val();
+            if (objDetil.Qty != '') {
+                arr_detail.push(objDetil);
+                tbl_detil = $('#tblDetail').DataTable({
+                    data: arr_detail,
+                    select: true,
+                    destroy: true,
+                    columns: [
+                    { data: "row_no" },
+                    { data: "ITEM_CD" },
+                    { data: "ITEM_NM" },
+                    { data: "QTY" },
+                    ],
+                    processing: true,
+                    searching: false,
+                    lengthChange: false,
+                    paging: false,
+                    info:false
+                });
+
+                //$.each(arr_detail, function (key, value) {
+                //    cumm_price = parseInt(cumm_price) + (parseInt(value.UP_PRC) * parseInt(value.QTY));
+                //});
+                
+               // $('#tbPrice').val(cumm_price);
+                $('#tbQty').val('');
+                $('#txt_row_id').val('');
+                cumm_price = '0';
+            }
+            else {
+                alert('Qty must be filled');
+            }
+
+        });
+
+        $('#tblDetail tbody').on('click', 'tr', function () {
+
+            var row = (tbl_detil.row(this).data());
+            selected_det = row.row_no + ";" + row.ITEM_CD + ";" + row.QTY;
+            
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+               
+            }
+            else {
+                tbl_detil.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+            }
+
+        });
+
+      
+    });
+
+    function GetItem() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetSPA02MTWithPrice")',
+
+            success: function (response) {
+                arr_item = response.Data;
+                var new_datagroup = $.grep(arr_item, function (e) {
+                    return e.id != '0';
+                });
+                $('#selItem').select2({
+                    data: new_datagroup
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+        });
+
+    }
+
+    function GetPrepaidNo() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Content("/AjaxData/GetPrepaidNo")',
+
+            success: function (response) {
+                arr_prepaid = response.Data;
+
+                $('#selPrepaid').select2({
+                    data: arr_prepaid
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+        });
+
+    }
+    function DeleteItem(PrepaidNo, ItemCd) {
+        $('#notifSuccess_del').hide();
+        $('#notifErr_del').hide();
+        $.ajax({
+            url: '/PrepaidPaketMaster/DeletePrepaid?id=' + PrepaidNo + ";" + ItemCd,
+            method: 'POST',
+            success: function (result) {
+                if (result.Status == 'success') {
+                    $('#notifSuccess_del').show();
+                }
+                else {
+                    $("label[for = lblErr_del]").text(result.Status);
+                    $('#notifErr_del').show();
+                }
+               
+            },
+            error: function (xml, message, text) {
+                alert("Msg: " + message + ", Text: " + text);
+            }
+        });
+    }
+    function Inquiry(PrepaidNo) {
+        $.ajax({
+            type: 'GET',
+            url: '/PrepaidPaketMaster/GetPrepaidPaket?param=' + PrepaidNo,
+
+            success: function (response) {
+
+                arr_inquiry = response.Data;
+                tbl_inquiry = $('#gridResult').DataTable({
+                    data: arr_inquiry,
+                    destroy: true,
+                    columns: [
+                        { data: "PREPAID_CD" },
+                        { data: "PREPAID_NM" },
+                        { data: "AMT" },
+                        { data: "ITEM_CD" },
+                        { data: "ITEM_NM" },
+                        { data: "QTY" },
+                        { data: "INPUT_DT" },
+
+                        {
+                            "data": null,
+                            "targets": -1,
+                            "render": function (data, type, full) {
+                                return "<a  onclick='Edit(" + full['PREPAID_CD'] + ")' id='btnEdit" + full['PREPAID_CD'] + "'><i class='fa fa-edit'></i></a>" +
+                                  " | <button onclick='Delete(" + full['PREPAID_CD'] + ", "  + full['ITEM_CD'] + ")' ><i class='fa fa-trash'></i></button>";
+                            }, 
+                            "bSearchable": true,
+                            "sortable": false
+
+                        }
+
+                    ],
+                    processing: true,
+                    dom: 'Bfrtip',
+                    buttons: [
+                            'print', 'excel'
+                    ],
+                    rowGroup: {
+
+                        dataSrc: 'PREPAID_CD'
+                    }
+                });
+
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+
+        });
+    }
+    var Edit = function (PrepaidCd) {
+        $('#notifSuccess').hide();
+        $('#notifErr').hide();
+        $.ajax({
+            url: '/PrepaidPaketMaster/GetDetailPrepaidPacket?parm=' + PrepaidCd,
+            method: 'GET',
+            success: function (result) {
+                if (result.Status == "success" || result.Status=="") {
+                    $('#tbPrepaidNo').val(result.Prpepaid_NO);
+                    
+                    $('#tbPrepaidName').val(result.Prepaid_NM);
+                    $('#tbPrepaidName').prop('readonly', true);
+                    $('#tbPrice').val(result.AMT);
+                    if (result.IsUseInTran == true) {
+                        $('#btnDown').hide();
+                        $('#btnUp').hide();
+                    }
+                    else {
+                        $('#btnDown').show();
+                        $('#btnUp').show();
+                    }
+                    arr_detail=result.Data;
+                    tbl_detil = $('#tblDetail').DataTable({
+                        data: arr_detail,
+                        select: true,
+                        destroy: true,
+                        columns: [
+                        { data: "row_no" },
+                        { data: "ITEM_CD" },
+                        { data: "ITEM_NM" },
+                        { data: "QTY" },
+                        ],
+                        processing: true,
+                        searching: false,
+                        lengthChange: false,
+                        paging: false,
+                        info: false
+                    });
+                    $("#mdlAdd").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    }, 'show');
+                }
+                else {
+
+                }
+            },
+            error: function (xml, message, text) {
+                alert("Msg: " + message + ", Text: " + text);
+            }
+        });
+
+        return false;
+       
+       
+    }
+    var Delete = function (PrepaidCd, ItemCd) {
+
+        $("label[for = prepaid_no_del]").text(PrepaidCd);
+        $("label[for = item_cd_del]").text(ItemCd);
+      //  $("label[for = item_cd_del]").text(ItemCd);
+        $("#mdlRemove").modal({
+            backdrop: 'static',
+            keyboard: false
+        }, 'show');
+
+        return false;
+    }
+</script>
+
+

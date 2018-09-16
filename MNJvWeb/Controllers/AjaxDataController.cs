@@ -29,6 +29,21 @@ namespace MNJvWeb.Controllers
             return JsonResult;
         }
 
+        public JsonResult GetSPA02MTWithPrice()
+        {
+            DBHelper objDBHelp = new DBHelper();
+            DataTable dtbl = objDBHelp.GetData("SPA02MT", null, new string[] { "USED" }, new string[] { "Y" });
+            List<SPA02MTModel> list = new List<SPA02MTModel>();
+            list.Add(new SPA02MTModel { id = "0", text = "All" });
+            for (int i = 0; i < dtbl.Rows.Count; i++)
+            {
+                list.Add(new SPA02MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() + " - " + dtbl.Rows[i]["HARGA"].ToString() });
+            }
+            var JsonResult = Json(new { Data = list }, JsonRequestBehavior.AllowGet);
+            JsonResult.MaxJsonLength = Int32.MaxValue;
+            return JsonResult;
+        }
+
         public JsonResult GetSPA05MT()
         {
             DBHelper objDBHelp = new DBHelper();
@@ -180,6 +195,26 @@ namespace MNJvWeb.Controllers
             for (int i = 0; i < dtbl.Rows.Count; i++)
             {
                 list.Add(new SPTA01MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() });
+            }
+
+            //list = ObjectConverter.DataTableToList<SPTA01MTModel>(dtbl);
+
+            var JsonResult = Json(new { Data = list }, JsonRequestBehavior.AllowGet);
+            JsonResult.MaxJsonLength = Int32.MaxValue;
+            return JsonResult;
+        }
+
+        [HttpGet]
+        public JsonResult GetPrepaidNo()
+        {
+            DBHelper objDBHelp = new DBHelper();
+
+            DataTable dtbl = objDBHelp.GetData("SPA16IT", new string[]{"PREPAID_CD", "PREPAID_NM"}, null, null);
+            List<SPA16ITModel> list = new List<SPA16ITModel>();
+            list.Add(new SPA16ITModel { id = "0", text = "All" });
+            for (int i = 0; i < dtbl.Rows.Count; i++)
+            {
+                list.Add(new SPA16ITModel { id = dtbl.Rows[i]["PREPAID_CD"].ToString(), text = dtbl.Rows[i]["PREPAID_NM"].ToString() });
             }
 
             //list = ObjectConverter.DataTableToList<SPTA01MTModel>(dtbl);
