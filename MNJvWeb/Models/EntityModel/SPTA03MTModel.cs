@@ -30,7 +30,6 @@ namespace MNJvWeb.Models.EntityModel
         public decimal KOMISI { get; set; }
         public string USED { get; set; }
         public string PASSWORD { get; set; }
-
         public string id { get; set; }
         public string text { get; set; }
     }

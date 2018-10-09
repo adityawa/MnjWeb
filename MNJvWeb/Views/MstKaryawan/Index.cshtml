@@ -1,0 +1,469 @@
+﻿@model MNJvWeb.Models.EntityModel.SPTA03MTModel
+
+@{
+    ViewBag.Title = "MstEmployeeIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/css/select2.css" rel="stylesheet" />
+<style>
+    div.dataTables_wrapper {
+        overflow-x: auto;
+        margin: 0 auto;
+    }
+
+    .dataTables_paginate {
+        float: left !important;
+    }
+
+    .ui-datepicker-trigger {
+        border: none;
+        background: none;
+    }
+</style>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/select2.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/jszip.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.js"></script>
+
+<div class="page-title">
+    <h1>Employee Master</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="btnAddEmployee" class="btn btn-link"><i class="fa fa-user"></i> Add Employee</button>
+        <div class="card" id="grid">
+            <div class="row" id="preview">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-bordered display nowrap" style="width:100%" id="gridEmp">
+                            <thead style="background-color:orange">
+                                <tr>
+                                    <th></th>
+                                    <th>Emp No</th>
+                                    <th>Name</th>
+                                    <th>Departemen</th>
+                                    <th>Grade</th>
+                                    <th>Enter Date</th>
+                                    <th>Birthdate</th>
+                                    <th>Status</th>
+                                    <th>Resign Date</th>
+                                    <th>Religion</th>
+                                    <th>Work Type</th>
+                                    <th>Commision</th>
+                                    <th>Sex</th>
+                                    <th>Telp</th>
+                                    <th>HP</th>
+                                    <th>Education</th>
+                                    <th>Blood</th>
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                    <th>Kacamata</th>
+                                    <th>ID</th>
+                                    <th>Adrres</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="mdlAdd" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div id="notifSuccess" class="alert alert-success" style="display:none" role="alert">
+                <strong>Success!</strong> Your Data saved successfull.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="notifErr" class="alert alert-danger" style="display:none" role="alert">
+                <strong>Error!</strong> <label for="lblErr"></label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"> <i class="fa fa-users"></i> Add New Employee</h4>
+            </div>
+            <div style="font-size:small">
+                <div class="col-lg-4" style="margin-top:20px">
+                    <form class="form-horizontal" style=" margin-bottom:5px; padding-bottom:5px">
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbItemCd" style="font-size: small" class="col-sm-4 control-label">Emp No</label>
+                            <input type="text" class="form-control col-md-5" id="tbEmployeeNo" readonly>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbCustomer" style="font-size: small" class="col-md-4 control-label">Name</label>
+                            <input type="text" class="form-control col-md-5" id="tbName">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblEtrDate" style="font-size:small" class="col-md-4 control-label">Enter Date</label>
+                            <input type="text" class="form-control col-md-8" id="tbEnterDT">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblBirthDate" style="font-size:small" class="col-md-4 control-label">Birth Date</label>
+                            <input type="text" class="form-control col-md-8" id="tbBirthDT">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbReligion" class="col-sm-4 control-label">Religion</label>
+                            <select class="form-control col-md-6" id="selReligion" style="width:40%" name="selReligion"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbStatus" class="col-sm-4 control-label">Status</label>
+                            <select class="form-control col-md-6" id="selStatus" style="width:40%" name="selStatus"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblWrkTyp" class="col-sm-4 control-label">Work Type</label>
+                            <select class="form-control col-md-6" id="selWorkType" style="width:40%" name="selWorkType"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbCustomer" class="col-md-4 control-label">Address</label>
+                            <textarea id="tbAddress" style="height:20px; width:180px" class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4" style="margin-top:20px">
+                    <form class="form-horizontal" style="margin-bottom:5px; padding-bottom:5px">
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblGrade" class="col-sm-4 control-label">Sex</label>
+                            <select class="form-control col-md-6" id="selSex" style="width:40%" name="selSex"></select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblDept" class="col-sm-4 control-label">Departemen</label>
+                            <select class="form-control col-md-6" id="selDept" style="width:40%" name="selDept"></select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblGrade" class="col-sm-4 control-label">Grade</label>
+                            <select class="form-control col-md-6" id="selGrade" style="width:40%" name="selGrade"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblGrade" class="col-sm-4 control-label">Education</label>
+                            <select class="form-control col-md-6" id="selEducation" style="width:40%" name="selEducation"></select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblHP" style="font-size:small" class="col-md-4 control-label">HP</label>
+                            <input type="text" class="form-control col-md-6" id="tbHP">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblWeight" style="font-size:small" class="col-md-4 control-label">Berat</label>
+                            <input type="text" class="form-control col-md-6" id="tbWeight">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblHeight" style="font-size:small" class="col-md-4 control-label">Tinggi</label>
+                            <input type="text" class="form-control col-md-6" id="tbHeight">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4" style="margin-top:20px">
+                    <form class="form-horizontal" style="margin-bottom:5px; padding-bottom:5px">
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblResignDate" style="font-size:small" class="col-md-5 control-label">Resign Date</label>
+                            <input type="text" class="form-control col-md-5" id="tbResignDT">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbItemCd" class="col-sm-5 control-label">Eye Glass</label>
+                            <select class="form-control col-md-6" id="selKacamata" style="width:30%" name="selKacamata"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lbItemCd" class="col-sm-5 control-label">Blood Type</label>
+                            <select class="form-control col-md-6" id="selBlood" style="width:30%" name="selBlood"></select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblKtp" style="font-size:small" class="col-md-5 control-label">ID Card No</label>
+                            <input type="text" class="form-control col-md-6" id="tbKTP">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblTelp" style="font-size:small" class="col-md-5 control-label">Telp</label>
+                            <input type="text" class="form-control col-md-6" id="tbTelp">
+                        </div>
+                        <div class="form-group" style="margin-bottom:5px; padding-bottom:5px">
+                            <label for="lblKtp" style="font-size:small" class="col-md-5 control-label">Password</label>
+                            <input type="password" class="form-control col-md-6" id="tbPass">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var tblEmp;
+    var arr_emp = [];
+    var arr_mst = [];
+    $(document).ready(function () {
+        PopulateEmployee();
+
+        $('#tbEnterDT').datepicker({
+            showOn: "button",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1980:2018',
+            buttonText: "<i class='fa fa-calendar'></i>"
+        });
+
+        $('#tbBirthDT').datepicker({
+            showOn: "button",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2010',
+            buttonText: "<i class='fa fa-calendar'></i>"
+        });
+
+        $('#tbResignDT').datepicker({
+            showOn: "button",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2010',
+            buttonText: "<i class='fa fa-calendar'></i>"
+        });
+
+        GetItemMaster('DEPARTEMEN');
+        GetItemMaster('STATUS');
+        GetItemMaster('GRADE');
+        GetItemMaster('SEX');
+        GetItemMaster('EDUCATION');
+        GetItemMaster('KACA MATA');
+        GetItemMaster('RELIGION');
+        GetItemMaster('WORK TYPE');
+        GetItemMaster('BLOOD TYPE');
+
+        $('#btnAddEmployee').click(function (e) {
+            $("#mdlAdd").modal({
+                backdrop: 'static',
+                keyboard: false
+            }, 'show');
+        });
+
+        $('#btnSave').click(function (e) {
+            if (window.FormData != undefined) {
+
+                var _EmpNo = $('#tbEmployeeNo').val();
+                var _EmpNm = $('#tbName').val();
+                var _EnterDT = $('#tbEnterDT').val();
+                var _BirthDT = $('#tbBirthDT').val();
+                var _Religion = $('#selReligion').val();
+                var _Status = $('#selStatus').val();
+                var _WorkType = $('#selWorkType').val();
+                var _Address = $('#tbAddress').val();
+                var _Sex = $('#selSex').val();
+                var _Dept = $('#selDept').val();
+                var _Grade = $('#selGrade').val();
+                var _Education = $('#selEducation').val();
+                var _HP = $('#tbHP').val();
+                var _Berat = $('#tbWeight').val();
+                var _Tinggi = $('#tbHeight').val();
+                var _ResignDT = $('#tbResignDT').val();
+                var _Kacamata = $('#selKacamata').val();
+                var _Darah = $('#selBlood').val();
+                var _Ktp = $('#tbKTP').val();
+                var _Pass = $('#tbPass').val();
+
+                var form_data = new FormData();
+                form_data.append("EmpNo", _EmpNo);
+                form_data.append("Name", _EmpNm);
+                form_data.append("EnterDT", _EnterDT);
+                form_data.append("BirthDT", _BirthDT);
+                form_data.append("Religion", _Religion);
+                form_data.append("Status", _Status);
+                form_data.append("WorkType", _WorkType);
+                form_data.append("Address", _Address);
+                form_data.append("Sex", _Sex);
+                form_data.append("Dept", _Dept);
+                form_data.append("Grade", _Grade);
+                form_data.append("Education", _Sex);
+                form_data.append("HP", _HP);
+                form_data.append("Weight", _Berat);
+                form_data.append("Height", _Tinggi);
+                form_data.append("ResignDT", _ResignDT);
+                form_data.append("Kacamata", _Kacamata);
+                form_data.append("Darah", _Darah);
+                form_data.append("KTP", _Ktp);
+                form_data.append("Password", _Pass);
+                $.ajax({
+                    type: 'POST',
+                    url: '/MstKaryawan/AddNewEmployee',
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    async: "true",
+                    success: function (result) {
+                        if (result.Status == 'success') {
+                            $('#notifSuccess').show();
+                        }
+                        else {
+                            $("label[for = lblErr]").text(result.Status);
+                            $('#notifErr').show();
+                        }
+                    }
+                })
+            }
+            else {
+                alert('Your Browser is not support Form Data');
+            }
+        });
+    });
+
+    function PopulateEmployee() {
+        $.ajax({
+            url: '/MstKaryawan/GetEmployee',
+            type: 'GET',
+            success: function (response) {
+                if (response.Status == 'success') {
+                    arr_emp = response.Data;
+                    tblEmp = $('#gridEmp').DataTable({
+                        data: arr_emp,
+                        destroy: true,
+                        columns: [
+                             {
+                                 "data": null,
+                                 "targets": -1,
+                                 "render": function (data, type, full) {
+                                     return "<a  onclick='Edit(" + full['EMP_NO'] + ")' id='btnEdit" + full['EMP_NO'] + "'><i class='fa fa-edit'></i></a>" +
+                                       " | <button onclick='Delete(" + full['EMP_NO'] + ", " + full['EMP_NO'] + ")' ><i class='fa fa-trash'></i></button>";
+                                 },
+                                 "bSearchable": true,
+                                 "sortable": false,
+                                 "scrollX": true
+                             },
+                            { data: "EMP_NO" },
+                            { data: "EMP_NM" },
+                            { data: "DEPT_CD" },
+                            { data: "GRADE" },
+                            { data: "ENTER_DT" },
+                            { data: "BIRTH_DT" },
+                            { data: "STATUS" },
+                            { data: "RESIGN_DT" },
+                            { data: "RELIGION" },
+                            { data: "WORK_TY" },
+                            { data: "KOMISI" },
+                            { data: "SEX" },
+                            { data: "TELP" },
+                            { data: "HP" },
+                            { data: "EDU_CD" },
+                            { data: "DARAH" },
+                            { data: "BERAT" },
+                            { data: "TINGGI" },
+                            { data: "KACAMATA" },
+                            { data: "KTP" },
+                            { data: "ADDR" }
+
+                        ],
+                        processing: true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                                'print', 'excel'
+                        ]
+                    });
+                }
+            }
+        })
+    }
+
+    function GetItemMaster(_parm) {
+        $.ajax({
+            type: 'GET',
+            url: '/AjaxData/GetSPA01MTWithParam?parm='+_parm,
+
+            success: function (response) {
+                arr_mst = response.Data;
+
+                if (_parm == "RELIGION") {
+                    $('#selReligion').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "WORK TYPE") {
+                    $('#selWorkType').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "DEPARTEMEN") {
+                    $('#selDept').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "GRADE") {
+                    $('#selGrade').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "STATUS") {
+                    $('#selStatus').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "KACA MATA") {
+                    $('#selKacamata').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "BLOOD TYPE") {
+                    $('#selBlood').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "EDUCATION") {
+                    $('#selEducation').select2({
+                        data: arr_mst
+                    });
+                }
+                else if (_parm == "SEX") {
+                    $('#selSex').select2({
+                        data: arr_mst
+                    });
+                }
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+
+        });
+
+    }
+
+    var Edit = function (PrepaidCd) {
+        $('#notifSuccess').hide();
+
+        $('#notifErr').hide();
+        $("#mdlAdd").modal({
+            backdrop: 'static',
+            keyboard: false
+        }, 'show');
+
+        return false;
+
+
+    }
+</script>

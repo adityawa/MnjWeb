@@ -223,5 +223,24 @@ namespace MNJvWeb.Controllers
             JsonResult.MaxJsonLength = Int32.MaxValue;
             return JsonResult;
         }
+
+        [HttpGet]
+        public JsonResult GetSPA01MTWithParam(string parm)
+        {
+            DBHelper objDBHelp = new DBHelper();
+
+            DataTable dtbl = objDBHelp.GetData("SPA01MT", new string[] { "ITEM_CD", "ITEM_NM" }, new string[]{"GRP_CD"}, new string[]{parm});
+            List<SPTA01MTModel> list = new List<SPTA01MTModel>();
+            //list.Add(new SPTA01MTModel { id = "0", text = "All" });
+            for (int i = 0; i < dtbl.Rows.Count; i++)
+            {
+                list.Add(new SPTA01MTModel { id = dtbl.Rows[i]["ITEM_CD"].ToString(), text = dtbl.Rows[i]["ITEM_NM"].ToString() });
+            }
+
+            
+            var JsonResult = Json(new { Data = list }, JsonRequestBehavior.AllowGet);
+            JsonResult.MaxJsonLength = Int32.MaxValue;
+            return JsonResult;
+        }
     }
 }
